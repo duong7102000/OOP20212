@@ -23,7 +23,7 @@ public class Employee {
         this.time = time;
     }
 
-    public double calculateSalary(double hourlyPayRate, int time){
+    public double calculateSalary(){
         return hourlyPayRate*time;
     }
 }
