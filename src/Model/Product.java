@@ -1,6 +1,6 @@
 package Model;
 
-public class Product {
+public abstract class Product {
     private double price;
     private double purchasePrice;
     private int inStock;
