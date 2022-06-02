@@ -12,9 +12,4 @@ public class NhanVienChinhThuc extends NhanVien {
         }
         else System.out.println("Tăng quá lương tối đa");
     }
-    public void inThongTin(){
-        System.out.println(super.getTenNhanVien());
-        System.out.println(super.getAge());
-        System.out.println(tinhLuong());
-    }
 }

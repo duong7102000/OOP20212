@@ -10,4 +10,11 @@ public class SanPham {
         CuaHang.doanhThu+=((giaBan-giaMua)*soLuongMua);
         return giaBan*soLuongMua;
     }
+
+    public SanPham(double giaMua, double giaBan, double soLuong, int namRaMat) {
+        this.giaMua = giaMua;
+        this.giaBan = giaBan;
+        this.soLuong = soLuong;
+        this.namRaMat = namRaMat;
+    }
 }

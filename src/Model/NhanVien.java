@@ -5,7 +5,6 @@ public abstract class NhanVien {
     private String tenNhanVien;
     private int age;
     public abstract double tinhLuong();
-    public abstract void inThongTin();
 
     public String getTenNhanVien() {
         return tenNhanVien;
