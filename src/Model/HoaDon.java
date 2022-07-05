@@ -9,18 +9,18 @@ public class HoaDon {
     private int discount;
     private int soLuongMua;
     private int soLoaiSanPhamMua;
-    public List<SanPham> sanPhams;
+    public List<SanPham> gioHang;
 
     public HoaDon() {
-        sanPhams = new ArrayList<SanPham>();
+        gioHang = new ArrayList<SanPham>();
     }
-    public void themSanPham(SanPham sanPham) {
-        sanPhams.add(sanPham);
+    public void themSanPhamVaoGioHang(SanPham sanPham) {
+        gioHang.add(sanPham);
     }
     public double tinhGiaTriDonHang(){
         double giaTriDonHang=0;
-        for (int i = 0; i < sanPhams.size() - 1; i++) {
-            double giaSanPham= sanPhams.get(i).getGiaMua()*soLuongMua;
+        for (int i = 0; i < gioHang.size() - 1; i++) {
+            double giaSanPham= gioHang.get(i).getGiaMua()*soLuongMua;
             giaTriDonHang+=giaSanPham;
         }
         return giaTriDonHang;
