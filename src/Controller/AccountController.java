@@ -4,12 +4,13 @@ import Model.Account;
 import Util.ConnectionDB;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountController {
     public static List<Account> getAllAccount(){
         Connection connection = ConnectionDB.openConnection();
-        List<Account> listAccount = null;
+        List<Account> listAccount = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from tbl_taikhoan");
@@ -17,7 +18,7 @@ public class AccountController {
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 String position = resultSet.getString("position");
-                Account account= new Account(username, password, position);
+                Account account = new Account(username, password, position);
                 listAccount.add(account);
             }
         } catch (Exception e){
@@ -82,6 +83,20 @@ public class AccountController {
         return check;
     }
 
+    public static boolean deleteAccountByUsername(String username){
+        Connection connection = ConnectionDB.openConnection();
+        boolean check = false;
+        try {
+            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_taikhoan where username = %s", username));
+            check = !callableStatement.execute();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+        return check;
+    }
+
     public static Account logIn(String username, String password){
         Account account = AccountController.getAccountByUsername(username);
         if (account == null) return null;
@@ -96,6 +111,12 @@ public class AccountController {
         else {
             account.setPassword(newPass);
             return updateAccount(account);
+        }
+    }
+    public static void main(String[] args) {
+        for (Account a:
+                AccountController.getAllAccount()) {
+            System.out.println(a.getUsername());
         }
     }
 }

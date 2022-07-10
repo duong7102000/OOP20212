@@ -6,8 +6,8 @@ public class Sach extends SanPham {
     private String tacGia;
     private String theLoaiSach;
 
-    public Sach(double giaMua, double giaBan, double soLuong, int namRaMat, String tenSach, String nhaXuatBan, String tacGia, String theLoaiSach) {
-        super();
+    public Sach(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenSach, String nhaXuatBan, String tacGia, String theLoaiSach) {
+        super(id, giaMua, giaBan, soLuong, namRaMat);
         this.tenSach = tenSach;
         this.nhaXuatBan = nhaXuatBan;
         this.tacGia = tacGia;

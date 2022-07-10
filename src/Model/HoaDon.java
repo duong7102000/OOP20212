@@ -10,21 +10,18 @@ public class HoaDon {
     private int id;
     private String tenKhachHang;
     private int discount;
-    public List<SanPham> gioHang;
+    public List<GioHang> gioHangList;
 
-    public HoaDon() {
-        gioHang = new ArrayList<SanPham>();
-    }
-    public void themSanPhamVaoGioHang(SanPham sanPham) {
-        gioHang.add(sanPham);
+    public void themSanPhamVaoGioHang(GioHang gioHang) {
+        gioHangList.add(gioHang);
     }
     public void boSanPhamThuIKhoiGioHang(int i){
-        gioHang.remove(i);
+        gioHangList.remove(i);
     }
     public double tinhGiaTriDonHang(){
         double giaTriDonHang=0;
-        for (int i = 0; i < gioHang.size() - 1; i++) {
-            double giaSanPham= gioHang.get(i).getGiaMua();
+        for (int i = 0; i < gioHangList.size() - 1; i++) {
+            double giaSanPham= gioHangList.get(i).getSanPham().getGiaBan() * gioHangList.get(i).getSoLuong();
             giaTriDonHang+=giaSanPham;
         }
         giaTriDonHang=giaTriDonHang*discount/100;
@@ -32,19 +29,19 @@ public class HoaDon {
     }
     public double tinhLoiNhuanDonHang(){
         double loiNhuanDonHang=0;
-        for(int i = 0;i< gioHang.size()-1;i++){
-            double loiNhuanSP= gioHang.get(i).getGiaMua()-gioHang.get(i).getGiaBan();
+        for(int i = 0;i< gioHangList.size()-1;i++){
+            double loiNhuanSP = (gioHangList.get(i).getSanPham().getGiaBan()-gioHangList.get(i).getSanPham().getGiaMua()) * gioHangList.get(i).getSoLuong();
             loiNhuanDonHang+=loiNhuanSP;
         }
         loiNhuan+=loiNhuanDonHang;
         return loiNhuanDonHang;
     }
 
-    public HoaDon(int id, String tenKhachHang, int discount, List<SanPham> gioHang) {
+    public HoaDon(int id, String tenKhachHang, int discount, List<GioHang> gioHangList) {
         this.id = id;
         this.tenKhachHang = tenKhachHang;
         this.discount = discount;
-        this.gioHang = gioHang;
+        this.gioHangList = gioHangList;
     }
 
     public int getId() {
@@ -71,11 +68,11 @@ public class HoaDon {
         this.discount = discount;
     }
 
-    public List<SanPham> getGioHang() {
-        return gioHang;
+    public List<GioHang> getGioHangList() {
+        return gioHangList;
     }
 
-    public void setGioHang(List<SanPham> gioHang) {
-        this.gioHang = gioHang;
+    public void setGioHang(List<GioHang> gioHangList) {
+        this.gioHangList = gioHangList;
     }
 }

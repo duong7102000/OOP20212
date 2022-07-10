@@ -1,11 +1,22 @@
 package Model;
 
 public class SanPham {
+    private int id;
     private double giaMua;
     private double giaBan;
-    private double soLuong;
+    private int soLuong;
     private int namRaMat;
-    public SanPham() {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public SanPham(int id, double giaMua, double giaBan, int soLuong, int namRaMat) {
+        this.id = id;
         this.giaMua = giaMua;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
@@ -28,11 +39,11 @@ public class SanPham {
         this.giaBan = giaBan;
     }
 
-    public double getSoLuong() {
-        return soLuong;
+    public int getSoLuong() {
+        return this.soLuong;
     }
 
-    public void setSoLuong(double soLuong) {
+    public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
 

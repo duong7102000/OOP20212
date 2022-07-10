@@ -6,8 +6,8 @@ public class DiaNhac extends SanPham {
     private String theLoaiNhac;
     private String album;
 
-    public DiaNhac(double giaMua, double giaBan, double soLuong, int namRaMat, String tenDiaNhac, String caSy, String theLoaiNhac, String album) {
-        super();
+    public DiaNhac(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaNhac, String caSy, String theLoaiNhac, String album) {
+        super(id, giaMua, giaBan, soLuong, namRaMat);
         this.tenDiaNhac = tenDiaNhac;
         this.caSy = caSy;
         this.theLoaiNhac = theLoaiNhac;

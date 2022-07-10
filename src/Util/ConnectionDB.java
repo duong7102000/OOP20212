@@ -5,7 +5,7 @@ import java.sql.*;
 public class ConnectionDB {
     public static String URL = "jdbc:mysql://localhost:3306/oop20212";
     public static String USER = "root";
-    public static String PASSWORD = "12345678";
+    public static String PASSWORD = "123456";
 
     public static Connection openConnection(){
         Connection conn = null;
@@ -26,14 +26,6 @@ public class ConnectionDB {
             }
         }
     }
-
-    public static void main(String[] args) throws SQLException {
-        Connection connection = ConnectionDB.openConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select * from book");
-        while (resultSet.next()){
-            System.out.println(resultSet.getString("id"));
-        }
-        ConnectionDB.closeConnection(connection);
+    public static void main(String[] args) {
     }
 }

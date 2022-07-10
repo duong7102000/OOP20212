@@ -7,8 +7,8 @@ public class DiaPhim extends SanPham {
     private String[] dienVien;
     private int hangXanSuat;
 
-    public DiaPhim(double giaMua, double giaBan, double soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String[] dienVien, int hangXanSuat) {
-        super();
+    public DiaPhim(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String[] dienVien, int hangXanSuat) {
+        super(id, giaMua, giaBan, soLuong, namRaMat);
         this.tenDiaPhim = tenDiaPhim;
         this.daoDien = daoDien;
         this.bienKich = bienKich;
