@@ -11,17 +11,23 @@ import java.util.ArrayList;
 
 public class NewAccount extends JFrame implements ActionListener {
     public static void main(String[] args) {
-
+        NewAccount acc= new NewAccount();
     }
 
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
     // Khai bao cac component
+    JLabel lbName=new JLabel("Name");
+    JLabel lbYOB=new JLabel("Year of birth");
     JLabel lbUser=new JLabel("Username");
     JLabel lbPassword=new JLabel("Password");
     JTextField txtUser=new JTextField();
+    JTextField txtYOB=new JTextField();
+    JTextField txtName=new JTextField();
     JPasswordField txtPassword=new JPasswordField();
 
-    JLabel lbPosition=new JLabel("Positon");
+    JLabel lbPosition=new JLabel("Position");
     JComboBox cbPosition=new JComboBox();
 
     JButton btnSave=new JButton("Save");
@@ -32,13 +38,19 @@ public class NewAccount extends JFrame implements ActionListener {
 
     // Ham khoi tao
     public NewAccount(){
+        setBounds(450, 180, 1024, 234);
+        setResizable(false);
 
         // Tao container
         Container con=this.getContentPane();
 
-        // Tao panel 1 chua username, pass, access
+        // Tao panel 1 chua thong tin
         JPanel panel1=new JPanel();
-        panel1.setLayout(new GridLayout(3, 2));
+        panel1.setLayout(new GridLayout(5,5,5,5));
+        panel1.add(lbName);
+        panel1.add(txtName);
+        panel1.add(lbYOB);
+        panel1.add(txtYOB);
         panel1.add(lbUser);
         panel1.add(txtUser);
         panel1.add(lbPassword);
@@ -75,13 +87,14 @@ public class NewAccount extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Neu click btn save thi lay du lieu cua cac tru ng
         if(e.getActionCommand().equals("Save")) {
+            String name = txtName.getText();
+            String YOB = txtYOB.getText();
             String userName = txtUser.getText();
             String passWord = txtPassword.getText();
-            String access = (String) cbPosition.getSelectedItem();
+            String position = (String) cbPosition.getSelectedItem();
 
             // Tao nguoi dung moi
-           Account newUser = new Account(userName, passWord, access);
-
+           Account newUser = new Account(userName, passWord, position);
             // Them nguoi dung vao danh sach
             listUser.add(newUser);
         } else {

@@ -53,7 +53,7 @@ public class ChangePassword extends JFrame {
                     Connection con = ConnectionDB.openConnection();
 
                     PreparedStatement st = con
-                            .prepareStatement("Update student set password=? where name=?");
+                            .prepareStatement("Update tbl_taikhoan set password=? where username=?");
 
                     st.setString(1, pstr);
                     st.setString(2, name);
