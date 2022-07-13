@@ -4,10 +4,10 @@ public class DiaPhim extends SanPham {
     private String tenDiaPhim;
     private String daoDien;
     private String bienKich;
-    private String[] dienVien;
-    private int hangXanSuat;
+    private String dienVien;
+    private String hangXanSuat;
 
-    public DiaPhim(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String[] dienVien, int hangXanSuat) {
+    public DiaPhim(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String dienVien, String hangXanSuat) {
         super(id, giaMua, giaBan, soLuong, namRaMat);
         this.tenDiaPhim = tenDiaPhim;
         this.daoDien = daoDien;
@@ -40,19 +40,19 @@ public class DiaPhim extends SanPham {
         this.bienKich = bienKich;
     }
 
-    public String[] getDienVien() {
+    public String getDienVien() {
         return dienVien;
     }
 
-    public void setDienVien(String[] dienVien) {
+    public void setDienVien(String dienVien) {
         this.dienVien = dienVien;
     }
 
-    public int getHangXanSuat() {
+    public String getHangXanSuat() {
         return hangXanSuat;
     }
 
-    public void setHangXanSuat(int hangXanSuat) {
+    public void setHangXanSuat(String hangXanSuat) {
         this.hangXanSuat = hangXanSuat;
     }
 }

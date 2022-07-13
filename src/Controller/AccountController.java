@@ -56,7 +56,7 @@ public class AccountController {
         String password = account.getPassword();
         String position = account.getPosition();
         try {
-            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_taikhoan set password = %s, position = %s where username = %s", password, position, username));
+            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_taikhoan set password = \'%s\', position = \'%s\' where username = \'%s\'", password, position, username));
             check = !callableStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();

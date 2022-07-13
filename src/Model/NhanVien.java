@@ -8,6 +8,17 @@ public abstract class NhanVien {
         return account;
     }
 
+    public NhanVien(Account account, String tenNhanVien, int namSinh) {
+        this.account=account;
+        this.tenNhanVien = tenNhanVien;
+        this.namSinh = namSinh;
+    }
+    public NhanVien(String username, String password, String position, String tenNhanVien, int namSinh ){
+        this.account = new Account(username,password,position);
+        this.tenNhanVien=tenNhanVien;
+        this.namSinh=namSinh;
+    }
+
     public void setAccount(Account account) {
         this.account = account;
     }
