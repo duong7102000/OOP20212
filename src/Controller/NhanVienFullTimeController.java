@@ -22,8 +22,8 @@ public class NhanVienFullTimeController {
                 String ten = resultSet.getString("ten");
                 int namSinh = Integer.parseInt(resultSet.getString("namSinh"));
                 double luongThang = Double.parseDouble(resultSet.getString("luongThang"));
+                NhanVienFullTime nhanVienFullTime = new NhanVienFullTime(username,"password","position",ten,namSinh,luongThang);
                 Account account = AccountController.getAccountByUsername(username);
-                NhanVienFullTime nhanVienFullTime = new NhanVienFullTime();
                 nhanVienFullTime.setAccount(account);
                 nhanVienFullTime.setTenNhanVien(ten);
                 nhanVienFullTime.setNamSinh(namSinh);
@@ -65,16 +65,18 @@ public class NhanVienFullTimeController {
         return check;
     }
 
-    private static boolean updateNhanVienFullTime(NhanVienFullTime nhanVienFullTime){
+    public static boolean updateNhanVienFullTime(NhanVienFullTime nhanVienFullTime){
         boolean check = AccountController.updateAccount(nhanVienFullTime.getAccount());
         if (!check) return false;
         String username = nhanVienFullTime.getAccount().getUsername();
+        String password = nhanVienFullTime.getAccount().getPassword();
+        String position = nhanVienFullTime.getAccount().getPosition();
         String ten = nhanVienFullTime.getTenNhanVien();
         int namSinh = nhanVienFullTime.getNamSinh();
         double luongThang = nhanVienFullTime.getLuongThang();
         Connection connection = ConnectionDB.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_nhanvienfulltime set ten = N\'%s\', namSinh = %d, luongThang = %f where usename = \'%s\'", ten, namSinh, luongThang, username));
+            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_nhanvienfulltime set ten = N\'%s\', namSinh = %d, luongThang = %f where username = \'%s\'", ten, namSinh, luongThang, username));
             check = !callableStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();
@@ -82,5 +84,9 @@ public class NhanVienFullTimeController {
             ConnectionDB.closeConnection(connection);
         }
         return check;
+    }
+    public static void main(String[] args) {
+        NhanVienFullTime s = new NhanVienFullTime("hadimsc1","12345678","QuanLy", "Nguyễn Hà dinoman", 2002,50000);
+        System.out.println(NhanVienFullTimeController.updateNhanVienFullTime(s));
     }
 }

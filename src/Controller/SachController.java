@@ -84,8 +84,7 @@ public class SachController {
     }
 
     public static boolean deleteSachById(int id){
-        boolean check = SanPhamController.deleteSanPhamById(id);
-        if(!check) return false;
+        boolean check = false;
         Connection connection = ConnectionDB.openConnection();
         try {
             CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_sach where id = %d", id));
@@ -95,11 +94,12 @@ public class SachController {
         } finally {
             ConnectionDB.closeConnection(connection);
         }
+        check = SanPhamController.deleteSanPhamById(id);
         return check;
     }
 
     public static void main(String[] args) {
-        Sach sach = new Sach(1, 30000, 35000, 100, 2016, "Truyen cuoi", "Kim Đồng", "Văn A", "Truyện");
+        Sach sach = new Sach(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện");
         System.out.println(SachController.updateSach(sach));
     }
 }

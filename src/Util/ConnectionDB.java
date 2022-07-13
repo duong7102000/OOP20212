@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConnectionDB {
     public static String URL = "jdbc:mysql://localhost:3306/oop20212";
-    public static String USER = "maile";
+    public static String USER = "root";
     public static String PASSWORD = "123456";
 
     public static Connection openConnection(){
