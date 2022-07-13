@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Account;
 import Util.ConnectionDB;
+import View.NewAccount;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -118,5 +119,10 @@ public class AccountController {
                 AccountController.getAllAccount()) {
             System.out.println(a.getUsername());
         }
+    }
+
+    public static void ShowNewAccountScreen() {
+        NewAccount newAccountScreen = new NewAccount();
+        newAccountScreen.setVisible(true);
     }
 }
