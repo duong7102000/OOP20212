@@ -3,11 +3,14 @@ package Controller;
 import Model.Sach;
 import Model.SanPham;
 import Util.ConnectionDB;
+import Util.NormalizeString;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SachController {
+
     public static List<Sach> getAllSach() {
         Connection connection = ConnectionDB.openConnection();
         List<Sach> listSach = new ArrayList<>();
@@ -96,6 +99,18 @@ public class SachController {
         }
         check = SanPhamController.deleteSanPhamById(id);
         return check;
+    }
+    public static List<Sach> searchSachByName(String tenSach){
+        List<Sach> listSachResult = new ArrayList<>();
+        List<Sach> listSach = SachController.getAllSach();
+        if (tenSach == "") return listSach;
+        for (Sach sach:
+                listSach) {
+            if (NormalizeString.normalizeSearchString(sach.getTenSach()).contains(NormalizeString.normalizeSearchString(tenSach))){
+                listSachResult.add(sach);
+            }
+        }
+        return listSachResult;
     }
 
     public static void main(String[] args) {

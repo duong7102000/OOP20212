@@ -1,8 +1,8 @@
 package Controller;
 
 import Model.Account;
+import Model.QuanLy;
 import Util.ConnectionDB;
-import View.NewAccount;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -121,8 +121,4 @@ public class AccountController {
         }
     }
 
-    public static void ShowNewAccountScreen() {
-        NewAccount newAccountScreen = new NewAccount();
-        newAccountScreen.setVisible(true);
-    }
 }

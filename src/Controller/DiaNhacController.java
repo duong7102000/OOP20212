@@ -1,8 +1,11 @@
 package Controller;
 
 import Model.DiaNhac;
+import Model.Sach;
 import Model.SanPham;
 import Util.ConnectionDB;
+import Util.NormalizeString;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +99,18 @@ public class DiaNhacController {
         }
         check = SanPhamController.deleteSanPhamById(id);
         return check;
+    }
+    public static List<DiaNhac> searchDiaNhacByName(String tenDiaNhac){
+        List<DiaNhac> listDiaNhacResult = new ArrayList<>();
+        List<DiaNhac> listDiaNhac = DiaNhacController.getAllDiaNhac();
+        if (tenDiaNhac == "") return listDiaNhac;
+        for (DiaNhac diaNhac:
+                listDiaNhac) {
+            if (NormalizeString.normalizeSearchString(diaNhac.getTenDiaNhac()).contains(NormalizeString.normalizeSearchString(tenDiaNhac))){
+                listDiaNhacResult.add(diaNhac);
+            }
+        }
+        return listDiaNhacResult;
     }
 
     public static void main(String[] args) {

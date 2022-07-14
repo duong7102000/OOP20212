@@ -2,8 +2,11 @@ package Controller;
 
 import Model.DiaNhac;
 import Model.DiaPhim;
+import Model.Sach;
 import Model.SanPham;
 import Util.ConnectionDB;
+import Util.NormalizeString;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,5 +103,17 @@ public class DiaPhimController {
         }
         check = SanPhamController.deleteSanPhamById(id);
         return check;
+    }
+    public static List<DiaPhim> searchDiaPhimByName(String tenDiaPhim){
+        List<DiaPhim> listDiaPhimResult = new ArrayList<>();
+        List<DiaPhim> listDiaPhim = DiaPhimController.getAllDiaPhim();
+        if (tenDiaPhim == "") return listDiaPhim;
+        for (DiaPhim diaPhim:
+                listDiaPhim) {
+            if (NormalizeString.normalizeSearchString(diaPhim.getTenDiaPhim()).contains(NormalizeString.normalizeSearchString(tenDiaPhim))){
+                listDiaPhimResult.add(diaPhim);
+            }
+        }
+        return listDiaPhimResult;
     }
 }
