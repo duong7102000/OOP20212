@@ -2,13 +2,13 @@ package Model;
 
 public class GioHang {
     private int id;
-    private HoaDon hoaDon;
+    private int hoaDonId;
     private SanPham sanPham;
     private int soLuong;
 
-    public GioHang(int id, HoaDon hoaDon, SanPham sanPham, int soLuong) {
+    public GioHang(int id, int hoaDonId, SanPham sanPham, int soLuong) {
         this.id = id;
-        this.hoaDon = hoaDon;
+        this.hoaDonId = hoaDonId;
         this.sanPham = sanPham;
         this.soLuong = soLuong;
     }
@@ -21,16 +21,16 @@ public class GioHang {
         this.id = id;
     }
 
-    public HoaDon getHoaDon() {
-        return hoaDon;
-    }
-
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
     public SanPham getSanPham() {
         return sanPham;
+    }
+
+    public int getHoaDonId() {
+        return hoaDonId;
+    }
+
+    public void setHoaDonId(int hoaDonId) {
+        this.hoaDonId = hoaDonId;
     }
 
     public void setSanPham(SanPham sanPham) {
