@@ -15,14 +15,14 @@ public class QuanLyController {
         List<QuanLy> listQuanLy = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from tbl_nhanvienfulltime");
+            ResultSet resultSet = statement.executeQuery("select * from tbl_quanly");
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
                 String ten = resultSet.getString("ten");
                 int namSinh = Integer.parseInt(resultSet.getString("namSinh"));
                 double luongThang = Double.parseDouble(resultSet.getString("luongThang"));
-                QuanLy quanLy = new QuanLy(username,"password","position",ten,namSinh,luongThang);
                 Account account = AccountController.getAccountByUsername(username);
+                QuanLy quanLy = new QuanLy(account,ten,namSinh,luongThang);
                 quanLy.setAccount(account);
                 quanLy.setTenNhanVien(ten);
                 quanLy.setNamSinh(namSinh);
@@ -83,5 +83,12 @@ public class QuanLyController {
             ConnectionDB.closeConnection(connection);
         }
         return check;
+    }
+    public static void main(String[] args) {
+        List<QuanLy> listQuanLy = getAllQuanLy();
+        for (QuanLy ql:
+                listQuanLy) {
+            System.out.println(ql.getAccount().getUsername());
+        }
     }
 }

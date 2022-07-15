@@ -5,6 +5,7 @@ import Model.NhanVienFullTime;
 import Model.Sach;
 import Model.SanPham;
 import Util.ConnectionDB;
+import Util.NormalizeString;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,6 +85,18 @@ public class NhanVienFullTimeController {
             ConnectionDB.closeConnection(connection);
         }
         return check;
+    }
+    public static List<NhanVienFullTime> searchNvftByName(String tenNhanVien){
+        List<NhanVienFullTime> listNvftResult = new ArrayList<>();
+        List<NhanVienFullTime> listNvft = NhanVienFullTimeController.getAllNhanVienFullTime();
+        if (tenNhanVien == "") return listNvft;
+        for (NhanVienFullTime nvft:
+                listNvft) {
+            if (NormalizeString.normalizeSearchString(nvft.getTenNhanVien()).contains(NormalizeString.normalizeSearchString(tenNhanVien))){
+                listNvftResult.add(nvft);
+            }
+        }
+        return listNvftResult;
     }
     public static void main(String[] args) {
         NhanVienFullTime s = new NhanVienFullTime("hadimsc1","12345678","QuanLy", "Nguyễn Hà dinoman", 2002,50000);

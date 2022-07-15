@@ -16,6 +16,7 @@ import static Controller.NhanVienFullTimeController.getAllNhanVienFullTime;
 import static Controller.NhanVienPartTimeController.getAllNhanVienPartTime;
 import static Controller.QuanLyController.getAllQuanLy;
 
+
 public class Login extends JDialog{
     private JPanel panel1;
     private JTextField textField1;
@@ -39,7 +40,8 @@ public class Login extends JDialog{
                 if (account==null){
                     JOptionPane.showMessageDialog(Login.this, "Xin mời bạn nhập lại");
                 }
-                else if(account.getPosition().equals("QuanLy")){
+                else switch(account.getPosition()){
+                    case "admin":
                     QuanLy quanLy = null;
                     List<QuanLy> listQuanLy = getAllQuanLy();
                     for (QuanLy ql:
@@ -51,8 +53,8 @@ public class Login extends JDialog{
                     }
                     dispose();
                     new QuanLyForm(null, quanLy);
-                }
-                else if(account.getPosition().equals("Nhan vien part time")){
+                    break;
+                    case "employee part time":
                     NhanVienPartTime nhanVienPartTime = null;
                     List<NhanVienPartTime> listNhanVienPartTime = getAllNhanVienPartTime();
                     for (NhanVienPartTime nvpt:
@@ -64,8 +66,7 @@ public class Login extends JDialog{
                     }
                     dispose();
                     new NhanVienForm(null, nhanVienPartTime);
-                }
-                else if(account.getPosition().equals("Nhan vien full time")){
+                    case "employee full time":
                     NhanVienFullTime nhanVienFullTime = null;
                     List<NhanVienFullTime> listNhanVienFullTime = getAllNhanVienFullTime();
                     for (NhanVienFullTime nvft:

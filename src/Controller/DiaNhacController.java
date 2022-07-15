@@ -86,7 +86,7 @@ public class DiaNhacController {
         return check;
     }
 
-    public static boolean deleteSachById(int id){
+    public static boolean deleteDiaNhacById(int id){
         boolean check = false;
         Connection connection = ConnectionDB.openConnection();
         try {

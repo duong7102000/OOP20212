@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import Util.ConnectionDB;
+import Util.NormalizeString;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -82,6 +83,18 @@ public class NhanVienPartTimeController {
             ConnectionDB.closeConnection(connection);
         }
         return check;
+    }
+    public static List<NhanVienPartTime> searchNvptByName(String tenNhanVien){
+        List<NhanVienPartTime> listNvptResult = new ArrayList<>();
+        List<NhanVienPartTime> listNvpt = NhanVienPartTimeController.getAllNhanVienPartTime();
+        if (tenNhanVien == "") return listNvpt;
+        for (NhanVienPartTime nvpt:
+                listNvpt) {
+            if (NormalizeString.normalizeSearchString(nvpt.getTenNhanVien()).contains(NormalizeString.normalizeSearchString(tenNhanVien))){
+                listNvptResult.add(nvpt);
+            }
+        }
+        return listNvptResult;
     }
     public static void main(String[] args) {
         NhanVienPartTime s = new NhanVienPartTime("Dinoman1","12345678","admin", "Nguyễn Hà pro", 2002,50000,5);

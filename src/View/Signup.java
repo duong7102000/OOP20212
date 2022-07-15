@@ -41,7 +41,7 @@ public class Signup extends JDialog{
             public void actionPerformed(ActionEvent actionEvent) {
                 Account account = new Account(textField0.getText(), textField1.getText(), textField2.getText());
                 switch (account.getPosition()) {
-                    case "Nhân viên part time":
+                    case "employee part time":
                         NhanVienPartTime nhanVienPartTime = new NhanVienPartTime(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0, 0);
                         if (!insertNhanVienPartTime(nhanVienPartTime)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
@@ -53,7 +53,7 @@ public class Signup extends JDialog{
                             new Login(null);
                         }
                         break;
-                    case "Nhân viên full time":
+                    case "employee full time":
                         NhanVienFullTime nhanVienFullTime = new NhanVienFullTime(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0);
                         if (!insertNhanVienFullTime(nhanVienFullTime)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
@@ -65,13 +65,12 @@ public class Signup extends JDialog{
                             new Login(null);
                         }
                         break;
-                    case "Quản Lý":
+                    case "admin":
                         QuanLy quanLy = new QuanLy(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0);
                         if (!insertQuanLy(quanLy)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
                         }
                         else{
-                            insertQuanLy(quanLy);
                             JOptionPane.showMessageDialog(Signup.this, "Đăng ký thành công!");
                             dispose();
                             new Login(null);
