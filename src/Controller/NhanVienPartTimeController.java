@@ -98,6 +98,6 @@ public class NhanVienPartTimeController {
     }
     public static void main(String[] args) {
         NhanVienPartTime s = new NhanVienPartTime("Dinoman1","12345678","admin", "Nguyễn Hà pro", 2002,50000,5);
-        System.out.println(NhanVienPartTimeController.updateNhanVienPartTime(s));
+        System.out.println(NhanVienPartTimeController.searchNvptByName("duong gay"));
     }
 }

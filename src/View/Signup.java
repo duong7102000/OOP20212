@@ -11,10 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static Controller.AccountController.insertAccount;
 import static Controller.NhanVienFullTimeController.insertNhanVienFullTime;
 import static Controller.NhanVienPartTimeController.insertNhanVienPartTime;
-import static Controller.NhanVienPartTimeController.updateNhanVienPartTime;
 import static Controller.QuanLyController.insertQuanLy;
 
 

@@ -34,10 +34,15 @@ public class QuanLyForm extends JDialog{
     private JButton thêmNhânViênButton;
     private JTable table4;
     private JTable table5;
+    private JPanel QuanLyPanel;
+    private JButton refreshButton;
+    private JButton refreshButton1;
+    private JTable table6;
 
     public QuanLyForm(JFrame parent, QuanLy quanLy){
         super(parent);
-        setTitle("Quản lý MediaOne");
+        setTitle("Quản lý");
+        setContentPane(QuanLyPanel);
         setMinimumSize(new Dimension(1500, 800));
         setModal(true);
         setLocationRelativeTo(parent);
@@ -222,7 +227,7 @@ public class QuanLyForm extends JDialog{
             }
         });
         DefaultTableModel defaultTableModel4 = new DefaultTableModel();
-        table4.setModel(defaultTableModel2);
+        table4.setModel(defaultTableModel4);
         defaultTableModel4.addColumn("Họ và tên");
         defaultTableModel4.addColumn("Năm sinh");
         defaultTableModel4.addColumn("Username");
@@ -285,7 +290,7 @@ public class QuanLyForm extends JDialog{
                         defaultTableModel4.removeRow(i);
                     }
                     for (NhanVienFullTime nvft :
-                            listNhanVienFullTime) {
+                            listnvft) {
                         String ten = nvft.getTenNhanVien();
                         int namSinh = nvft.getNamSinh();
                         String username = nvft.getAccount().getUsername();
@@ -300,7 +305,7 @@ public class QuanLyForm extends JDialog{
                         defaultTableModel5.removeRow(i);
                     }
                     for (NhanVienPartTime nvpt :
-                            listNhanVienPartTime) {
+                            listnvpt) {
                         String ten = nvpt.getTenNhanVien();
                         int namSinh = nvpt.getNamSinh();
                         String username = nvpt.getAccount().getUsername();
@@ -321,9 +326,20 @@ public class QuanLyForm extends JDialog{
                 new SuaNhanVien(null);
             }
         });
-    }
-    public static void main(String[] args) {
-        QuanLy ql = new QuanLy("hadimsctn", "12345678", "Quản Lý", "Nguyễn Hà", 2002, 0);
-        new QuanLyForm(null, ql);
+        setVisible(true);
+        refreshButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                defaultTableModel4.fireTableDataChanged();
+                defaultTableModel5.fireTableDataChanged();
+            }
+        });
+        đăngXuấtButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Login(null);
+            }
+        });
     }
 }

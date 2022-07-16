@@ -99,7 +99,7 @@ public class NhanVienFullTimeController {
         return listNvftResult;
     }
     public static void main(String[] args) {
-        NhanVienFullTime s = new NhanVienFullTime("hadimsc1","12345678","QuanLy", "Nguyễn Hà dinoman", 2002,50000);
-        System.out.println(NhanVienFullTimeController.updateNhanVienFullTime(s));
+        NhanVienFullTime s = new NhanVienFullTime("hadimsc3","12345678","employee full time", "Nguyễn Hà dinoman", 2002,50000);
+        System.out.println(NhanVienFullTimeController.insertNhanVienFullTime(s));
     }
 }
