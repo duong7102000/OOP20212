@@ -11,6 +11,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class DiaPhimController {
     public static List<DiaPhim> getAllDiaPhim() {
         Connection connection = ConnectionDB.openConnection();
@@ -24,7 +26,7 @@ public class DiaPhimController {
                 String daoDien = resultSet.getString("daoDien");
                 String bienKich = resultSet.getString("bienKich");
                 String dienVien = resultSet.getString("dienVien");
-                String hangXanSuat = resultSet.getString("hangXanSuat");
+                String hangXanSuat = resultSet.getString("hangSanXuat");
                 DiaPhim diaPhim = new DiaPhim(id, 0.0, 0.0, 0, 0, tenDiaPhim, daoDien, bienKich, dienVien,hangXanSuat);
                 SanPham sanPham = SanPhamController.getSanPhamById(id);
                 diaPhim.setGiaMua(sanPham.getGiaMua());
@@ -56,7 +58,7 @@ public class DiaPhimController {
         String daoDien= diaPhim.getDaoDien();
         String bienKich= diaPhim.getBienKich();
         String dienVien=diaPhim.getDienVien();
-        String hangSanXuat = diaPhim.getHangXanSuat();
+        String hangSanXuat = diaPhim.getHangSanXuat();
         Connection connection = ConnectionDB.openConnection();
         try {
             CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_diaphim values (%d, N\'%s\', N\'%s\', N\'%s\', N\'%s\',N\'%s\')", id, ten, daoDien, bienKich, dienVien,hangSanXuat));
@@ -77,10 +79,10 @@ public class DiaPhimController {
         String daoDien = diaPhim.getDaoDien();
         String bienKich = diaPhim.getBienKich();
         String dienVien = diaPhim.getDienVien();
-        String hangXanSuat = diaPhim.getHangXanSuat();
+        String hangSanXuat = diaPhim.getHangSanXuat();
         Connection connection = ConnectionDB.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_diaphim set ten = N\'%s\', daoDien = N\'%s\', bienKich = N\'%s\', dienVien = N\'%s\', hangSanXuat= N\'%s\' where id = %d", ten, daoDien, bienKich, dienVien, hangXanSuat));
+            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_diaphim set ten = N\'%s\', daoDien = N\'%s\', bienKich = N\'%s\', dienVien = N\'%s\', hangSanSuat= N\'%s\' where id = %d", ten, daoDien, bienKich, dienVien, hangSanXuat));
             check = !callableStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();
@@ -115,5 +117,21 @@ public class DiaPhimController {
             }
         }
         return listDiaPhimResult;
+    }
+    public static List<DiaPhim> searchDiaPhimById(String id){
+        List<DiaPhim> listDiaPhimResult = new ArrayList<>();
+        List<DiaPhim> listDiaPhim = DiaPhimController.getAllDiaPhim();
+        if (id == "") return listDiaPhim;
+        for (DiaPhim diaPhim:
+                listDiaPhim) {
+            if (NormalizeString.normalizeSearchString(valueOf(diaPhim.getId())).contains(NormalizeString.normalizeSearchString(id))){
+                listDiaPhimResult.add(diaPhim);
+            }
+        }
+        return listDiaPhimResult;
+    }
+    public static void main(String[] args) {
+        DiaPhim s = new DiaPhim(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện", "abc");
+        System.out.println(DiaPhimController.insertDiaPhim(s));
     }
 }

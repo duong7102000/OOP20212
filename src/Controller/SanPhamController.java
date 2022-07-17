@@ -95,6 +95,6 @@ public class SanPhamController {
 
     public static void main(String[] args) {
         SanPham s = new SanPham(4, 30000, 35000, 100, 2015);
-        System.out.println(SanPhamController.insertSanPham(s));
+        System.out.println(getSanPhamById(13));
     }
 }

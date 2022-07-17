@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class DiaNhacController {
     public static List<DiaNhac> getAllDiaNhac() {
         Connection connection = ConnectionDB.openConnection();
@@ -38,7 +40,7 @@ public class DiaNhacController {
         }
         return listDiaNhac;
     }
-    public static DiaNhac getSachById(int id){
+    public static DiaNhac getDiaNhacById(int id){
         for (DiaNhac diaNhac:
                 DiaNhacController.getAllDiaNhac()) {
             if(diaNhac.getId()==id) return diaNhac;
@@ -107,6 +109,18 @@ public class DiaNhacController {
         for (DiaNhac diaNhac:
                 listDiaNhac) {
             if (NormalizeString.normalizeSearchString(diaNhac.getTenDiaNhac()).contains(NormalizeString.normalizeSearchString(tenDiaNhac))){
+                listDiaNhacResult.add(diaNhac);
+            }
+        }
+        return listDiaNhacResult;
+    }
+    public static List<DiaNhac> searchDiaNhacById(String id){
+        List<DiaNhac> listDiaNhacResult = new ArrayList<>();
+        List<DiaNhac> listDiaNhac = DiaNhacController.getAllDiaNhac();
+        if (id == "") return listDiaNhac;
+        for (DiaNhac diaNhac:
+                listDiaNhac) {
+            if (NormalizeString.normalizeSearchString(valueOf(diaNhac.getId())).contains(NormalizeString.normalizeSearchString(id))){
                 listDiaNhacResult.add(diaNhac);
             }
         }

@@ -3,11 +3,11 @@ package Controller;
 import Model.*;
 import Util.ConnectionDB;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class GioHangController {
     public static List<GioHang> getAllGioHang(){
@@ -54,8 +54,38 @@ public class GioHangController {
         }
         return listGioHang;
     }
-
-    public static boolean insertGioHang(int hoaDonId, SanPham sanPham){
-        return false;
+    public static boolean insertGioHang(List<GioHang> gioHangList,HoaDon hoaDon){
+        boolean check = HoaDonController.insertHoaDon(hoaDon);
+        if (!check) return false;
+        List<GioHang> listGioHang = GioHangController.getAllGioHang();
+        for (GioHang gh:gioHangList) {
+            if (listGioHang.size() == 0) gh.setId(1);
+            else gh.setId(listGioHang.get(listGioHang.size() - 1).getId() + 1);
+            gioHangList.add(gh);
+        }
+        for (GioHang gh :gioHangList) {
+            int id = gh.getId();
+            int idSanPham = gh.getSanPham().getId();
+            int idHoaDon = hoaDon.getId();
+            int soLuong = gh.getSoLuong();
+            Connection connection = ConnectionDB.openConnection();
+            try {
+                CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_sach values (%d, %d)", id, idSanPham,idHoaDon,soLuong));
+                check = !callableStatement.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionDB.closeConnection(connection);
+            }
+        }
+        return check;
+    }
+    public static void main(String[] args) {
+        List<GioHang> gioHangList = new ArrayList<>();
+        Sach sach = new Sach(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện");
+        GioHang gh = new GioHang(0,0,sach,10);
+        gioHangList.add(gh);
+        HoaDon hd = new HoaDon(0,0,gioHangList);
+        System.out.println(GioHangController.insertGioHang(gioHangList,hd));
     }
 }

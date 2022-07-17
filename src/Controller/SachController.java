@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class SachController {
 
     public static List<Sach> getAllSach() {
@@ -107,6 +109,18 @@ public class SachController {
         for (Sach sach:
                 listSach) {
             if (NormalizeString.normalizeSearchString(sach.getTenSach()).contains(NormalizeString.normalizeSearchString(tenSach))){
+                listSachResult.add(sach);
+            }
+        }
+        return listSachResult;
+    }
+    public static List<Sach> searchSachById(String id){
+        List<Sach> listSachResult = new ArrayList<>();
+        List<Sach> listSach = SachController.getAllSach();
+        if (id == "") return listSach;
+        for (Sach sach:
+                listSach) {
+            if (NormalizeString.normalizeSearchString(valueOf(sach.getId())).contains(NormalizeString.normalizeSearchString(id))){
                 listSachResult.add(sach);
             }
         }

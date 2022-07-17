@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuaHang {
-    public static double loiNhuan;
     public static double doanhThu;
     public List<NhanVien> nhanViens;
     public CuaHang() {

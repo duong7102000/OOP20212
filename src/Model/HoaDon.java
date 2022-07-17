@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Model.CuaHang.doanhThu;
-import static Model.CuaHang.loiNhuan;
+
 
 public class HoaDon {
     private int id;
-    private String tenKhachHang;
     private int discount;
     public List<GioHang> gioHangList;
-
-    public void themSanPhamVaoGioHang(GioHang gioHang) {
-        gioHangList.add(gioHang);
-    }
     public void boSanPhamThuIKhoiGioHang(int i){
         gioHangList.remove(i);
     }
@@ -24,7 +19,7 @@ public class HoaDon {
             double giaSanPham= gioHangList.get(i).getSanPham().getGiaBan() * gioHangList.get(i).getSoLuong();
             giaTriDonHang+=giaSanPham;
         }
-        giaTriDonHang=giaTriDonHang*discount/100;
+        giaTriDonHang=giaTriDonHang-giaTriDonHang*discount/100;
         return giaTriDonHang;
     }
     public double tinhLoiNhuanDonHang(){
@@ -33,13 +28,12 @@ public class HoaDon {
             double loiNhuanSP = (gioHangList.get(i).getSanPham().getGiaBan()-gioHangList.get(i).getSanPham().getGiaMua()) * gioHangList.get(i).getSoLuong();
             loiNhuanDonHang+=loiNhuanSP;
         }
-        loiNhuan+=loiNhuanDonHang;
+        doanhThu+=loiNhuanDonHang;
         return loiNhuanDonHang;
     }
 
-    public HoaDon(int id, String tenKhachHang, int discount, List<GioHang> gioHangList) {
+    public HoaDon(int id, int discount, List<GioHang> gioHangList) {
         this.id = id;
-        this.tenKhachHang = tenKhachHang;
         this.discount = discount;
         this.gioHangList = gioHangList;
     }
@@ -50,14 +44,6 @@ public class HoaDon {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTenKhachHang() {
-        return tenKhachHang;
-    }
-
-    public void setTenKhachHang(String tenKhachHang) {
-        this.tenKhachHang = tenKhachHang;
     }
 
     public int getDiscount() {

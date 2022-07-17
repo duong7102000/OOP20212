@@ -127,13 +127,13 @@ public class QuanLyForm extends JDialog{
             String daoDien = diaPhim.getDaoDien();
             String bienKich = diaPhim.getBienKich();
             String dienVien = diaPhim.getDienVien();
-            String hangSanXuat = diaPhim.getHangXanSuat();
+            String hangSanXuat = diaPhim.getHangSanXuat();
             int namRaMat = diaPhim.getNamRaMat();
             int soLuong = diaPhim.getSoLuong();
             double giaBan = diaPhim.getGiaBan();
             double giaMua = diaPhim.getGiaMua();
             Object[] row = new Object[]{id, tenDiaPhim, daoDien, bienKich, dienVien, hangSanXuat, namRaMat, soLuong, giaBan, giaMua};
-            defaultTableModel2.addRow(row);
+            defaultTableModel3.addRow(row);
         }
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -192,7 +192,7 @@ public class QuanLyForm extends JDialog{
                         String daoDien = diaPhim.getDaoDien();
                         String bienKich = diaPhim.getBienKich();
                         String dienVien = diaPhim.getDienVien();
-                        String hangXanSuat = diaPhim.getHangXanSuat();
+                        String hangXanSuat = diaPhim.getHangSanXuat();
                         int namRaMat = diaPhim.getNamRaMat();
                         int soLuong = diaPhim.getSoLuong();
                         double giaBan = diaPhim.getGiaBan();
@@ -326,12 +326,67 @@ public class QuanLyForm extends JDialog{
                 new SuaNhanVien(null);
             }
         });
-        setVisible(true);
         refreshButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                defaultTableModel4.fireTableDataChanged();
-                defaultTableModel5.fireTableDataChanged();
+                List<Sach> listSach = getAllSach();
+                List<DiaNhac> listDiaNhac = getAllDiaNhac();
+                List<DiaPhim> listDiaPhim = getAllDiaPhim();
+                int rows = defaultTableModel1.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    defaultTableModel1.removeRow(i);
+                }
+                for (Sach sach :
+                        listSach) {
+                    int id = sach.getId();
+                    String tenSach = sach.getTenSach();
+                    String tacGia = sach.getTacGia();
+                    String theLoaiSach = sach.getTheLoaiSach();
+                    String nhaXuatBan = sach.getNhaXuatBan();
+                    int namRaMat = sach.getNamRaMat();
+                    int soLuong = sach.getSoLuong();
+                    double giaBan = sach.getGiaBan();
+                    double giaMua = sach.getGiaMua();
+                    Object[] row = new Object[]{id, tenSach, tacGia, theLoaiSach, nhaXuatBan, namRaMat, soLuong, giaBan, giaMua};
+                    defaultTableModel1.addRow(row);
+                }
+                int rows1 = defaultTableModel2.getRowCount();
+                for (int i = rows1 - 1; i >= 0; i--) {
+                    defaultTableModel2.removeRow(i);
+                }
+                for (DiaNhac diaNhac :
+                        listDiaNhac) {
+                    int id = diaNhac.getId();
+                    String tenDiaNhac = diaNhac.getTenDiaNhac();
+                    String caSy = diaNhac.getCaSy();
+                    String theLoaiNhac = diaNhac.getTheLoaiNhac();
+                    String album = diaNhac.getAlbum();
+                    int namRaMat = diaNhac.getNamRaMat();
+                    int soLuong = diaNhac.getSoLuong();
+                    double giaBan = diaNhac.getGiaBan();
+                    double giaMua = diaNhac.getGiaMua();
+                    Object[] row = new Object[]{id, tenDiaNhac, caSy, theLoaiNhac, album, namRaMat, soLuong, giaBan, giaMua};
+                    defaultTableModel2.addRow(row);
+                }
+                int rows2 = defaultTableModel3.getRowCount();
+                for (int i = rows2 - 1; i >= 0; i--) {
+                    defaultTableModel3.removeRow(i);
+                }
+                for (DiaPhim diaPhim :
+                        listDiaPhim) {
+                    int id = diaPhim.getId();
+                    String tenDiaPhim = diaPhim.getTenDiaPhim();
+                    String daoDien = diaPhim.getDaoDien();
+                    String bienKich = diaPhim.getBienKich();
+                    String dienVien = diaPhim.getDienVien();
+                    String hangXanSuat = diaPhim.getHangSanXuat();
+                    int namRaMat = diaPhim.getNamRaMat();
+                    int soLuong = diaPhim.getSoLuong();
+                    double giaBan = diaPhim.getGiaBan();
+                    double giaMua = diaPhim.getGiaMua();
+                    Object[] row = new Object[]{id, tenDiaPhim, daoDien, bienKich, dienVien, hangXanSuat, namRaMat, soLuong, giaBan, giaMua};
+                    defaultTableModel3.addRow(row);
+                }
             }
         });
         đăngXuấtButton.addActionListener(new ActionListener() {
@@ -341,5 +396,45 @@ public class QuanLyForm extends JDialog{
                 new Login(null);
             }
         });
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<NhanVienFullTime> listNhanVienFullTime = getAllNhanVienFullTime();
+                List<NhanVienPartTime> listNhanVienPartTime = getAllNhanVienPartTime();
+                int rows = defaultTableModel4.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    defaultTableModel4.removeRow(i);
+                }
+                for (NhanVienFullTime nvft :
+                        listNhanVienFullTime) {
+                    String ten = nvft.getTenNhanVien();
+                    int namSinh = nvft.getNamSinh();
+                    String username = nvft.getAccount().getUsername();
+                    String password = nvft.getAccount().getPassword();
+                    String position = nvft.getAccount().getPosition();
+                    double luong = nvft.tinhLuong();
+                    Object[] row = new Object[]{ten, namSinh, username, password, position, luong};
+                    defaultTableModel4.addRow(row);
+                }
+                int rows1 = defaultTableModel5.getRowCount();
+                for (int i = rows1 - 1; i >= 0; i--) {
+                    defaultTableModel5.removeRow(i);
+                }
+                for (NhanVienPartTime nvpt :
+                        listNhanVienPartTime) {
+                    String ten = nvpt.getTenNhanVien();
+                    int namSinh = nvpt.getNamSinh();
+                    String username = nvpt.getAccount().getUsername();
+                    String password = nvpt.getAccount().getPassword();
+                    String position = nvpt.getAccount().getPosition();
+                    int gioLam = nvpt.getGioLam();
+                    double luongTheoGio = nvpt.getLuongTheoGio();
+                    double luong = nvpt.tinhLuong();
+                    Object[] row = new Object[]{ten, namSinh, username, password, position, luongTheoGio, gioLam, luong};
+                    defaultTableModel5.addRow(row);
+                }
+            }
+        });
+        setVisible(true);
     }
 }

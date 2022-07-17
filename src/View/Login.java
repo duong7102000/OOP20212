@@ -64,7 +64,7 @@ public class Login extends JDialog{
                         }
                     }
                     dispose();
-                    new NhanVienForm(null, nhanVienPartTime);
+                    new NhanVienForm(null);
                     case "employee full time":
                     NhanVienFullTime nhanVienFullTime = null;
                     List<NhanVienFullTime> listNhanVienFullTime = getAllNhanVienFullTime();
@@ -76,7 +76,7 @@ public class Login extends JDialog{
                         }
                     }
                     dispose();
-                    new NhanVienForm(null, nhanVienFullTime);
+                    new NhanVienForm(null);
                 }
             }
         });
