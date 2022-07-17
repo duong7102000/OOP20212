@@ -25,6 +25,7 @@ public class Signup extends JDialog{
     private JPanel signUpPanel;
     private JTextField textField0;
     private JTextField textField4;
+    private JComboBox comboBox1;
 
     public Signup(JFrame parent) {
         super(parent);

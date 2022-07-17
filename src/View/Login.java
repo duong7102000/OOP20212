@@ -18,7 +18,6 @@ import static Controller.QuanLyController.getAllQuanLy;
 
 
 public class Login extends JDialog{
-    private JPanel panel1;
     private JTextField textField1;
     private JPasswordField passwordField1;
     private JButton signInButton;

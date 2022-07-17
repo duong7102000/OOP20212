@@ -3,16 +3,17 @@
   <grid id="27dc6" binding="SuaNhanVien" layout-manager="GridLayoutManager" row-count="16" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="503"/>
+      <xy x="20" y="20" width="500" height="667"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <component id="5749b" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="36" style="1"/>
           <text value="Sửa thông tin nhân viên"/>
         </properties>
       </component>
@@ -29,6 +30,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="20"/>
               <text value="Sửa thông tin"/>
             </properties>
           </component>
@@ -42,6 +44,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="20"/>
               <text value="Cancel"/>
             </properties>
           </component>
@@ -52,6 +55,7 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Username"/>
         </properties>
       </component>
@@ -61,13 +65,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="f8540" class="javax.swing.JLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Tên nhân viên"/>
         </properties>
       </component>
@@ -77,13 +84,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="332a1" class="javax.swing.JLabel">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Năm sinh"/>
         </properties>
       </component>
@@ -93,13 +103,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="91fa" class="javax.swing.JLabel">
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Lương theo giờ"/>
         </properties>
       </component>
@@ -109,13 +122,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="327d" class="javax.swing.JLabel">
         <constraints>
           <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Giờ làm"/>
         </properties>
       </component>
@@ -125,13 +141,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="4ff7c" class="javax.swing.JLabel">
         <constraints>
           <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Lương tháng"/>
         </properties>
       </component>
@@ -141,13 +160,16 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
       <component id="5df18" class="javax.swing.JLabel">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="24" style="1"/>
           <text value="Vị trí"/>
         </properties>
       </component>
@@ -157,7 +179,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
       </component>
     </children>
   </grid>
