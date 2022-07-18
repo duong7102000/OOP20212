@@ -29,7 +29,7 @@ public class ThemSach extends JDialog{
         super(parent);
         setTitle("Thêm sách");
         setContentPane(panel1);
-        setMinimumSize(new Dimension(500, 600));
+        setMinimumSize(new Dimension(1500, 600));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

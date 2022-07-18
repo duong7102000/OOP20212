@@ -17,6 +17,7 @@ import static Controller.DiaPhimController.*;
 import static Controller.GioHangController.insertGioHang;
 import static Controller.SachController.*;
 import static Controller.SanPhamController.getSanPhamById;
+import static Controller.SanPhamController.updateSanPham;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 
@@ -344,6 +345,12 @@ public class NhanVienForm extends JDialog {
                     int soLuong = parseInt(defaultTableModel4.getValueAt(i,4).toString());
                     GioHang gh = new GioHang(0,0,sanPham,soLuong);
                     gioHangList.add(gh);
+                    double giaMua=sanPham.getGiaMua();
+                    double giaBan=sanPham.getGiaBan();
+                    int soLuong1 = sanPham.getSoLuong()-soLuong;
+                    int namRaMat = sanPham.getNamRaMat();
+                    SanPham sanPham1 = new SanPham(idSanPham,giaMua,giaBan,soLuong1,namRaMat);
+                    updateSanPham(sanPham1);
                 }
                 HoaDon hd = new HoaDon(0,parseInt(textField2.getText()),gioHangList);
                 insertGioHang(gioHangList,hd);

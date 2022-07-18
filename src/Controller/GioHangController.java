@@ -57,7 +57,9 @@ public class GioHangController {
     public static boolean insertGioHang(List<GioHang> gioHangList,HoaDon hoaDon){
         boolean check = HoaDonController.insertHoaDon(hoaDon);
         if (!check) return false;
-        List<GioHang> listGioHang = GioHangController.getAllGioHang();
+        List<GioHang> listGioHang = new ArrayList<>();
+        listGioHang =GioHangController.getAllGioHang();
+        System.out.println("Duong dep trai");
         for (GioHang gh:listGioHang) {
             if (listGioHang.size() == 0) gh.setId(1);
             else gh.setId(listGioHang.get(listGioHang.size() - 1).getId() + 1);
@@ -70,7 +72,7 @@ public class GioHangController {
             int soLuong = gh.getSoLuong();
             Connection connection = ConnectionDB.openConnection();
             try {
-                CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_sach values (%d, %d)", id, idSanPham,idHoaDon,soLuong));
+                CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_giohang values (%d, %d,%d,%d)", id, idSanPham,idHoaDon,soLuong));
                 check = !callableStatement.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -84,7 +86,9 @@ public class GioHangController {
         List<GioHang> gioHangList = new ArrayList<>();
         Sach sach = new Sach(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện");
         GioHang gh = new GioHang(0,0,sach,10);
+        GioHang gh1 = new GioHang(0,0,sach,10);
         gioHangList.add(gh);
+        gioHangList.add(gh1);
         HoaDon hd = new HoaDon(0,0,gioHangList);
         System.out.println(GioHangController.insertGioHang(gioHangList,hd));
     }
