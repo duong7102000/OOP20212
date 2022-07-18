@@ -57,15 +57,14 @@ public class GioHangController {
     public static boolean insertGioHang(List<GioHang> gioHangList,HoaDon hoaDon){
         boolean check = HoaDonController.insertHoaDon(hoaDon);
         if (!check) return false;
-        List<GioHang> listGioHang = new ArrayList<>();
-        listGioHang =GioHangController.getAllGioHang();
-        System.out.println("Duong dep trai");
-        for (GioHang gh:listGioHang) {
-            if (listGioHang.size() == 0) gh.setId(1);
-            else gh.setId(listGioHang.get(listGioHang.size() - 1).getId() + 1);
-            listGioHang.add(gh);
+        List<GioHang> listGioHang = GioHangController.getAllGioHang();
+        int firstId = 0;
+        if(!listGioHang.isEmpty()){
+            firstId = listGioHang.get(listGioHang.size() - 1).getId() + 1;
         }
         for (GioHang gh :gioHangList) {
+            gh.setId(firstId);
+            firstId++;
             int id = gh.getId();
             int idSanPham = gh.getSanPham().getId();
             int idHoaDon = hoaDon.getId();
