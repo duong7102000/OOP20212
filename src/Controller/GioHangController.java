@@ -58,10 +58,10 @@ public class GioHangController {
         boolean check = HoaDonController.insertHoaDon(hoaDon);
         if (!check) return false;
         List<GioHang> listGioHang = GioHangController.getAllGioHang();
-        for (GioHang gh:gioHangList) {
+        for (GioHang gh:listGioHang) {
             if (listGioHang.size() == 0) gh.setId(1);
             else gh.setId(listGioHang.get(listGioHang.size() - 1).getId() + 1);
-            gioHangList.add(gh);
+            listGioHang.add(gh);
         }
         for (GioHang gh :gioHangList) {
             int id = gh.getId();
