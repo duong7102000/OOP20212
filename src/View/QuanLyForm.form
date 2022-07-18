@@ -82,7 +82,10 @@
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <font size="20"/>
+                  <text value=""/>
+                </properties>
               </component>
               <component id="b4feb" class="javax.swing.JButton" binding="thêmSảnPhẩmButton" default-binding="true">
                 <constraints>
