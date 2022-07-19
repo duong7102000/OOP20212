@@ -19,13 +19,12 @@ import static Controller.QuanLyController.insertQuanLy;
 public class Signup extends JDialog{
     private JTextField textField1;
     private JTextField textField2;
-    private JTextField textField3;
+    private JTextField textField4;
     private JButton signUpButton;
     private JButton cancelButton;
     private JPanel signUpPanel;
     private JTextField textField0;
-    private JTextField textField4;
-    private JComboBox comboBox1;
+    private JTextField textField3;
 
     public Signup(JFrame parent) {
         super(parent);
@@ -41,7 +40,7 @@ public class Signup extends JDialog{
                 Account account = new Account(textField0.getText(), textField1.getText(), textField2.getText());
                 switch (account.getPosition()) {
                     case "employee part time":
-                        NhanVienPartTime nhanVienPartTime = new NhanVienPartTime(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0, 0);
+                        NhanVienPartTime nhanVienPartTime = new NhanVienPartTime(textField0.getText(), textField1.getText(), textField2.getText(), textField3.getText(), Integer.parseInt(textField4.getText()), 0, 0);
                         if (!insertNhanVienPartTime(nhanVienPartTime)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
                         }
@@ -53,7 +52,7 @@ public class Signup extends JDialog{
                         }
                         break;
                     case "employee full time":
-                        NhanVienFullTime nhanVienFullTime = new NhanVienFullTime(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0);
+                        NhanVienFullTime nhanVienFullTime = new NhanVienFullTime(textField0.getText(), textField1.getText(), textField2.getText(), textField3.getText(), Integer.parseInt(textField4.getText()), 0);
                         if (!insertNhanVienFullTime(nhanVienFullTime)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
                         }
@@ -65,7 +64,7 @@ public class Signup extends JDialog{
                         }
                         break;
                     case "admin":
-                        QuanLy quanLy = new QuanLy(textField0.getText(), textField1.getText(), textField2.getText(), textField4.getText(), Integer.parseInt(textField3.getText()), 0);
+                        QuanLy quanLy = new QuanLy(textField0.getText(), textField1.getText(), textField2.getText(), textField3.getText(), Integer.parseInt(textField4.getText()), 0);
                         if (!insertQuanLy(quanLy)){
                             JOptionPane.showMessageDialog(Signup.this, "Xin mời bạn nhập Username khác");
                         }
