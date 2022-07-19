@@ -74,7 +74,7 @@ public class NhanVienForm extends JDialog {
             int soLuong = sach.getSoLuong();
             double giaBan = sach.getGiaBan();
             double giaMua = sach.getGiaMua();
-            Object[] row = new Object[]{id, tenSach, tacGia, theLoaiSach, nhaXuatBan, nhaXuatBan, namRaMat, soLuong, giaBan, giaMua};
+            Object[] row = new Object[]{id, tenSach, tacGia, theLoaiSach, nhaXuatBan, namRaMat, soLuong, giaBan, giaMua};
             defaultTableModel1.addRow(row);
         }
         DefaultTableModel defaultTableModel2 = new DefaultTableModel();
@@ -279,9 +279,8 @@ public class NhanVienForm extends JDialog {
                 int id = parseInt(defaultTableModel1.getValueAt(table2.getSelectedRow(), 0).toString());
                 String loaiSanPham = "Sách";
                 String tenSanPham = defaultTableModel1.getValueAt(table2.getSelectedRow(), 1).toString();
-                double giaBan = Double.parseDouble(defaultTableModel1.getValueAt(table2.getSelectedColumn(), 8).toString());
+                double giaBan = Double.parseDouble(defaultTableModel1.getValueAt(table2.getSelectedRow(), 7).toString());
                 String soLuongMua = textField3.getText();
-                Sach sach = getSachById(id);
                 Object[] row = new Object[]{id,tenSanPham,loaiSanPham,giaBan,soLuongMua};
                 defaultTableModel4.addRow(row);
             }
@@ -294,9 +293,8 @@ public class NhanVienForm extends JDialog {
                 int id = parseInt(defaultTableModel2.getValueAt(table3.getSelectedRow(), 0).toString());
                 String loaiSanPham = "Đĩa nhạc";
                 String tenSanPham = defaultTableModel2.getValueAt(table3.getSelectedRow(), 1).toString();
-                double giaBan = Double.parseDouble(defaultTableModel2.getValueAt(table3.getSelectedColumn(), 8).toString());
+                double giaBan = Double.parseDouble(defaultTableModel2.getValueAt(table3.getSelectedRow(), 7).toString());
                 String soLuongMua = textField3.getText();
-                DiaNhac diaNhac = getDiaNhacById(id);
                 Object[] row = new Object[]{id,tenSanPham,loaiSanPham,giaBan,soLuongMua};
                 defaultTableModel4.addRow(row);
             }
@@ -309,9 +307,8 @@ public class NhanVienForm extends JDialog {
                 int id = parseInt(defaultTableModel3.getValueAt(table4.getSelectedRow(), 0).toString());
                 String loaiSanPham = "Đĩa phim";
                 String tenSanPham = defaultTableModel3.getValueAt(table4.getSelectedRow(), 2).toString();
-                double giaBan = Double.parseDouble(defaultTableModel3.getValueAt(table4.getSelectedColumn(), 9).toString());
+                double giaBan = Double.parseDouble(defaultTableModel3.getValueAt(table4.getSelectedRow(), 8).toString());
                 String soLuongMua = textField3.getText();
-                Sach sach = getSachById(id);
                 Object[] row = new Object[]{id,tenSanPham,loaiSanPham,giaBan,soLuongMua};
                 defaultTableModel4.addRow(row);
             }
@@ -322,7 +319,6 @@ public class NhanVienForm extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 List<GioHang> gioHangList = new ArrayList<>();;
                 int rows = defaultTableModel4.getRowCount();
-                System.out.println(rows);
                 for(int i = rows - 1; i >= 0; i--){
                     int idSanPham = parseInt(defaultTableModel4.getValueAt(i, 0).toString());
                     SanPham sanPham = getSanPhamById(idSanPham);
@@ -361,7 +357,18 @@ public class NhanVienForm extends JDialog {
                 }
             }
         });
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(table1.getSelectedRow() != -1) {
+                    defaultTableModel4.removeRow(table1.getSelectedRow());
+                    JOptionPane.showMessageDialog(null, "Xóa sản phẩm khỏi giỏ hàng thành công!");
+                }
+            }
+        });
         setVisible(true);
+
     }
     public static void main(String[] args) {
         NhanVienForm a = new NhanVienForm(null);

@@ -88,7 +88,7 @@ public class AccountController {
         Connection connection = ConnectionDB.openConnection();
         boolean check = false;
         try {
-            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_taikhoan where username = %s", username));
+            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_taikhoan where username = \'%s\'", username));
             check = !callableStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();

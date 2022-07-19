@@ -49,5 +49,7 @@ public class HoaDonController {
         }
         return check;
     }
-
+    public static void main(String[] args) {
+        SanPham s = new SanPham(4, 30000, 35000, 100, 2015);
+    }
 }

@@ -15,12 +15,14 @@ public class HoaDon {
     }
     public double tinhGiaTriDonHang(){
         double giaTriDonHang=0;
-        for (int i = 0; i < gioHangList.size() - 1; i++) {
-            double giaSanPham= gioHangList.get(i).getSanPham().getGiaBan() * gioHangList.get(i).getSoLuong();
-            giaTriDonHang+=giaSanPham;
+        if (gioHangList.size()==0){return 0;}
+        else {
+            for (int i = 0; i < gioHangList.size() ; i++) {
+                giaTriDonHang+= gioHangList.get(i).getSanPham().getGiaBan() * gioHangList.get(i).getSoLuong();
+            }
+            giaTriDonHang = giaTriDonHang - giaTriDonHang * discount / 100;
+            return giaTriDonHang;
         }
-        giaTriDonHang=giaTriDonHang-giaTriDonHang*discount/100;
-        return giaTriDonHang;
     }
     public double tinhLoiNhuanDonHang(){
         double loiNhuanDonHang=0;

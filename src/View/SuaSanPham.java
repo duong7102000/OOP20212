@@ -34,7 +34,7 @@ public class SuaSanPham extends JDialog {
         sửaĐĩaPhimButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new SuaDiaPhim(null);
             }
         });
         setVisible(true);

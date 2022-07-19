@@ -7,7 +7,7 @@ public class DiaPhim extends SanPham {
     private String dienVien;
     private String hangSanXuat;
 
-    public DiaPhim(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String dienVien, String hangXanSuat) {
+    public DiaPhim(int id, double giaMua, double giaBan, int soLuong, int namRaMat, String tenDiaPhim, String daoDien, String bienKich, String dienVien, String hangSanXuat) {
         super(id, giaMua, giaBan, soLuong, namRaMat);
         this.tenDiaPhim = tenDiaPhim;
         this.daoDien = daoDien;
@@ -52,7 +52,7 @@ public class DiaPhim extends SanPham {
         return hangSanXuat;
     }
 
-    public void setHangSanXuat(String hangXanSuat) {
-        this.hangSanXuat = hangXanSuat;
+    public void setHangSanXuat(String hangSanXuat) {
+        this.hangSanXuat = hangSanXuat;
     }
 }

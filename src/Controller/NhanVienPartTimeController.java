@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.AccountController.deleteAccountByUsername;
+
 public class NhanVienPartTimeController {
     public static List<NhanVienPartTime> getAllNhanVienPartTime(){
         Connection connection = ConnectionDB.openConnection();
@@ -23,6 +25,7 @@ public class NhanVienPartTimeController {
                 int gioLam = Integer.parseInt(resultSet.getString("gioLam"));
                 NhanVienPartTime nhanVienPartTime = new NhanVienPartTime(username,"password","position",ten,namSinh,luongTheoGio,gioLam);
                 Account account = AccountController.getAccountByUsername(username);
+                nhanVienPartTime.setAccount(account);
                 nhanVienPartTime.setTenNhanVien(ten);
                 nhanVienPartTime.setNamSinh(namSinh);
                 nhanVienPartTime.setLuongTheoGio(luongTheoGio);
@@ -95,6 +98,21 @@ public class NhanVienPartTimeController {
             }
         }
         return listNvptResult;
+    }
+    public static boolean deleteNhanVienPartTimeByUsername(String username){
+        deleteAccountByUsername(username);
+        boolean check = false;
+        Connection connection = ConnectionDB.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_nhanvienparttime where username = \'%s\'", username));
+            check = !callableStatement.execute();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+        check = deleteAccountByUsername(username);
+        return check;
     }
     public static void main(String[] args) {
         NhanVienPartTime s = new NhanVienPartTime("Dinoman1","12345678","admin", "Nguyễn Hà pro", 2002,50000,5);

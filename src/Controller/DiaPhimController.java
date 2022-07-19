@@ -26,8 +26,8 @@ public class DiaPhimController {
                 String daoDien = resultSet.getString("daoDien");
                 String bienKich = resultSet.getString("bienKich");
                 String dienVien = resultSet.getString("dienVien");
-                String hangXanSuat = resultSet.getString("hangSanXuat");
-                DiaPhim diaPhim = new DiaPhim(id, 0.0, 0.0, 0, 0, tenDiaPhim, daoDien, bienKich, dienVien,hangXanSuat);
+                String hangSanXuat = resultSet.getString("hangSanXuat");
+                DiaPhim diaPhim = new DiaPhim(id, 0.0, 0.0, 0, 0, tenDiaPhim, daoDien, bienKich, dienVien,hangSanXuat);
                 SanPham sanPham = SanPhamController.getSanPhamById(id);
                 diaPhim.setGiaMua(sanPham.getGiaMua());
                 diaPhim.setGiaBan(sanPham.getGiaBan());
@@ -132,6 +132,6 @@ public class DiaPhimController {
     }
     public static void main(String[] args) {
         DiaPhim s = new DiaPhim(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện", "abc");
-        System.out.println(DiaPhimController.insertDiaPhim(s));
+        System.out.println(DiaPhimController.getAllDiaPhim());
     }
 }

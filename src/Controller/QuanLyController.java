@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.AccountController.deleteAccountByUsername;
+
 public class QuanLyController {
     public static List<QuanLy> getAllQuanLy(){
         Connection connection = ConnectionDB.openConnection();
@@ -82,6 +84,21 @@ public class QuanLyController {
         } finally {
             ConnectionDB.closeConnection(connection);
         }
+        return check;
+    }
+    public static boolean deleteQuanLyByUsername(String username){
+        deleteAccountByUsername(username);
+        boolean check = false;
+        Connection connection = ConnectionDB.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_quanly where username = \'%s\'", username));
+            check = !callableStatement.execute();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+        check = deleteAccountByUsername(username);
         return check;
     }
     public static void main(String[] args) {

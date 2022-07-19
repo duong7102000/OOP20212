@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.SanPhamController.getSanPhamById;
 import static java.lang.Integer.parseInt;
 
 public class GioHangController {
@@ -21,19 +22,7 @@ public class GioHangController {
                 int hoaDonId = Integer.parseInt(resultSet.getString("hoadon_id"));
                 int sanPhamId = Integer.parseInt(resultSet.getString("sanpham_id"));
                 int soLuong = Integer.parseInt(resultSet.getString("soluong"));
-                SanPham sanPham = null;
-                for (Sach s:
-                     SachController.getAllSach()) {
-                    if(s.getId()==sanPhamId) sanPham = s;
-                }
-                for (DiaNhac diaNhac:
-                     DiaNhacController.getAllDiaNhac()) {
-                    if(diaNhac.getId()==sanPhamId) sanPham = diaNhac;
-                }
-                for (DiaPhim diaPhim:
-                     DiaPhimController.getAllDiaPhim()) {
-                    if(diaPhim.getId()==sanPhamId) sanPham = diaPhim;
-                }
+                SanPham sanPham = getSanPhamById(sanPhamId);
                 GioHang gioHang = new GioHang(id, hoaDonId, sanPham, soLuong);
                 listGioHang.add(gioHang);
             }
@@ -71,7 +60,7 @@ public class GioHangController {
             int soLuong = gh.getSoLuong();
             Connection connection = ConnectionDB.openConnection();
             try {
-                CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_giohang values (%d, %d,%d,%d)", id, idSanPham,idHoaDon,soLuong));
+                CallableStatement callableStatement = connection.prepareCall(String.format("insert into tbl_giohang values (%d, %d,%d,%d)", id, idHoaDon,idSanPham,soLuong));
                 check = !callableStatement.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -89,6 +78,6 @@ public class GioHangController {
         gioHangList.add(gh);
         gioHangList.add(gh1);
         HoaDon hd = new HoaDon(0,0,gioHangList);
-        System.out.println(GioHangController.insertGioHang(gioHangList,hd));
+        System.out.println(GioHangController.getListGioHangByHoaDonId(3));
     }
 }

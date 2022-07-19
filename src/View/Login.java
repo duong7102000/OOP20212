@@ -51,7 +51,7 @@ public class Login extends JDialog{
                         }
                     }
                     dispose();
-                    new QuanLyForm(null, quanLy);
+                    new QuanLyForm(null);
                     break;
                     case "employee part time":
                     NhanVienPartTime nhanVienPartTime = null;

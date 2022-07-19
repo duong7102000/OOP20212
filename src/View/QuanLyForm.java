@@ -7,15 +7,20 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import static Controller.DiaNhacController.*;
 import static Controller.DiaPhimController.*;
-import static Controller.NhanVienFullTimeController.getAllNhanVienFullTime;
-import static Controller.NhanVienFullTimeController.searchNvftByName;
-import static Controller.NhanVienPartTimeController.getAllNhanVienPartTime;
-import static Controller.NhanVienPartTimeController.searchNvptByName;
+import static Controller.GioHangController.getListGioHangByHoaDonId;
+import static Controller.HoaDonController.getAllHoaDon;
+import static Controller.NhanVienFullTimeController.*;
+import static Controller.NhanVienPartTimeController.*;
+import static Controller.QuanLyController.deleteQuanLyByUsername;
+import static Controller.QuanLyController.getAllQuanLy;
 import static Controller.SachController.*;
+import static java.lang.Integer.parseInt;
 
 public class QuanLyForm extends JDialog{
     private JTabbedPane tabbedPane1;
@@ -24,7 +29,6 @@ public class QuanLyForm extends JDialog{
     private JButton thêmSảnPhẩmButton;
     private JButton searchButton;
     private JButton sửaSảnPhẩmButton;
-    private JButton xóaSảnPhẩmButton;
     private JTable table1;
     private JTable table2;
     private JTable table3;
@@ -38,8 +42,13 @@ public class QuanLyForm extends JDialog{
     private JButton refreshButton;
     private JButton refreshButton1;
     private JTable table6;
+    private JTable table7;
+    private JTable doanhThuTheoThang;
+    private JButton xóaNhânViênButton;
+    private JButton cậpNhậtDoanhThuButton;
+    private JLabel loiNhuanThang;
 
-    public QuanLyForm(JFrame parent, QuanLy quanLy){
+    public QuanLyForm(JFrame parent){
         super(parent);
         setTitle("Quản lý");
         setContentPane(QuanLyPanel);
@@ -78,7 +87,7 @@ public class QuanLyForm extends JDialog{
             int soLuong = sach.getSoLuong();
             double giaBan = sach.getGiaBan();
             double giaMua = sach.getGiaMua();
-            Object[] row = new Object[]{id, tenSach, tacGia, theLoaiSach, nhaXuatBan, nhaXuatBan, namRaMat, soLuong, giaBan, giaMua};
+            Object[] row = new Object[]{id, tenSach, tacGia, theLoaiSach, nhaXuatBan, namRaMat, soLuong, giaBan, giaMua};
             defaultTableModel1.addRow(row);
         }
         DefaultTableModel defaultTableModel2 = new DefaultTableModel();
@@ -104,7 +113,7 @@ public class QuanLyForm extends JDialog{
             int soLuong = diaNhac.getSoLuong();
             double giaBan = diaNhac.getGiaBan();
             double giaMua = diaNhac.getGiaMua();
-            Object[] row = new Object[]{id, tenDiaNhac, caSy, theLoaiNhac, album, namRaMat, soLuong, giaBan, giaMua};
+            Object[] row = new Object[]{id, tenDiaNhac, theLoaiNhac,caSy, album, namRaMat, soLuong, giaBan, giaMua};
             defaultTableModel2.addRow(row);
         }
         DefaultTableModel defaultTableModel3 = new DefaultTableModel();
@@ -209,17 +218,6 @@ public class QuanLyForm extends JDialog{
                 new ThemSanPham(null);
             }
         });
-        xóaSảnPhẩmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                int Id = Integer.parseInt(JOptionPane.showInputDialog("Mời bạn nhập Id sách muốn xóa:"));
-                if ((deleteSachById(Id)) || (deleteDiaPhimById(Id)) || (deleteDiaNhacById(Id))) {
-                    JOptionPane.showMessageDialog(QuanLyForm.this, "Xóa sản phẩm thành công!");
-                } else {
-                    JOptionPane.showMessageDialog(QuanLyForm.this, "Không thể xóa sản phẩm do có lỗi gì đó!");
-                }
-            }
-        });
         sửaSảnPhẩmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -235,6 +233,7 @@ public class QuanLyForm extends JDialog{
         defaultTableModel4.addColumn("Position");
         defaultTableModel4.addColumn("Lương tháng");
         List<NhanVienFullTime> listNhanVienFullTime = getAllNhanVienFullTime();
+        List<QuanLy> listQuanLy =getAllQuanLy();
         for (NhanVienFullTime nvft :
                 listNhanVienFullTime) {
             String ten = nvft.getTenNhanVien();
@@ -243,6 +242,17 @@ public class QuanLyForm extends JDialog{
             String password = nvft.getAccount().getPassword();
             String position = nvft.getAccount().getPosition();
             double luong = nvft.tinhLuong();
+            Object[] row = new Object[]{ten, namSinh, username, password, position, luong};
+            defaultTableModel4.addRow(row);
+        }
+        for (QuanLy ql :
+                listQuanLy) {
+            String ten = ql.getTenNhanVien();
+            int namSinh = ql.getNamSinh();
+            String username = ql.getAccount().getUsername();
+            String password = ql.getAccount().getPassword();
+            String position = ql.getAccount().getPosition();
+            double luong = ql.tinhLuong();
             Object[] row = new Object[]{ten, namSinh, username, password, position, luong};
             defaultTableModel4.addRow(row);
         }
@@ -435,6 +445,61 @@ public class QuanLyForm extends JDialog{
                 }
             }
         });
+        xóaNhânViênButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = JOptionPane.showInputDialog("Mời bạn nhập Username nhân viên muốn xóa:");
+                if ((deleteNhanVienPartTimeByUsername(username))||deleteNhanVienFullTimeByUsername(username)||deleteQuanLyByUsername(username))  {
+                    JOptionPane.showMessageDialog(QuanLyForm.this, "Xóa nhân viên thành công!");
+                } else {
+                    JOptionPane.showMessageDialog(QuanLyForm.this, "Không thể xóa nhân viên do có lỗi gì đó!");
+                }
+            }
+        });
+        DefaultTableModel defaultTableModel6 = new DefaultTableModel();
+        table6.setModel(defaultTableModel6);
+        defaultTableModel6.addColumn("Id hóa đơn");
+        defaultTableModel6.addColumn("Discount");
+        defaultTableModel6.addColumn("Giá trị đơn hàng");
+        List<HoaDon> listHoaDon = getAllHoaDon();
+        for(HoaDon hd:listHoaDon){
+            int id = hd.getId();
+            int discount = hd.getDiscount();
+            double giaTriDonHang = hd.tinhGiaTriDonHang();
+            Object[] row = new Object[]{id,discount,giaTriDonHang};
+            defaultTableModel6.addRow(row);
+        }
+        DefaultTableModel defaultTableModel7 = new DefaultTableModel();
+        table7.setModel(defaultTableModel7);
+        defaultTableModel7.addColumn("Id hóa đơn");
+        defaultTableModel7.addColumn("Id sản phẩm");
+        defaultTableModel7.addColumn("Tên sản phẩm");
+        defaultTableModel7.addColumn("Giá bán");
+        defaultTableModel7.addColumn("Số lượng mua");
+        table6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int rows = defaultTableModel7.getRowCount();
+                for (int i = rows - 1; i >= 0; i--) {
+                    defaultTableModel7.removeRow(i);
+                }
+                DefaultTableModel defaultTableModel6 = (DefaultTableModel) table6.getModel();
+                int id = parseInt(defaultTableModel6.getValueAt(table6.getSelectedRow(), 0).toString());
+                System.out.println(id);
+                List<GioHang> gioHangs = getListGioHangByHoaDonId(id);
+                for(GioHang gh : gioHangs){
+                    int idSanPham = gh.getSanPham().getId();
+                    double giaBan = gh.getSanPham().getGiaBan();
+                    int soLuongMua = gh.getSoLuong();
+                    Object[] row = new Object[]{id,idSanPham,giaBan,soLuongMua};
+                    defaultTableModel7.addRow(row);
+                }
+            }
+        });
         setVisible(true);
+    }
+    public static void main(String[] args) {
+        QuanLyForm a = new QuanLyForm(null);
     }
 }

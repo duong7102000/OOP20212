@@ -98,6 +98,20 @@ public class NhanVienFullTimeController {
         }
         return listNvftResult;
     }
+    public static boolean deleteNhanVienFullTimeByUsername(String username){
+        boolean check = false;
+        Connection connection = ConnectionDB.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(String.format("delete from tbl_nhanvienfulltime where username = \'%s\'", username));
+            check = !callableStatement.execute();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection);
+        }
+        check = AccountController.deleteAccountByUsername(username);
+        return check;
+    }
     public static void main(String[] args) {
         NhanVienFullTime s = new NhanVienFullTime("hadimsc3","12345678","employee full time", "Nguyễn Hà dinoman", 2002,50000);
         System.out.println(NhanVienFullTimeController.getAllNhanVienFullTime());

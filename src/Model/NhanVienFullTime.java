@@ -1,7 +1,7 @@
 package Model;
 
 public class NhanVienFullTime extends NhanVien {
-    private static double luongThang;
+    private double luongThang;
 
     public NhanVienFullTime(Account account, String tenNhanVien, int namSinh,double luongThang) {
         super(account, tenNhanVien, namSinh);
@@ -18,11 +18,11 @@ public class NhanVienFullTime extends NhanVien {
         return luongThang;
     }
 
-    public static double getLuongThang() {
+    public double getLuongThang() {
         return luongThang;
     }
 
-    public static void setLuongThang(double luongThang) {
-        NhanVienFullTime.luongThang = luongThang;
+    public void setLuongThang(double luongThang) {
+        this.luongThang = luongThang;
     }
 }

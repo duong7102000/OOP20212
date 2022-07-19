@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Controller.SanPhamController.deleteSanPhamById;
 import static java.lang.String.valueOf;
 
 public class SachController {
@@ -99,7 +100,7 @@ public class SachController {
         } finally {
             ConnectionDB.closeConnection(connection);
         }
-        check = SanPhamController.deleteSanPhamById(id);
+        check = deleteSanPhamById(id);
         return check;
     }
     public static List<Sach> searchSachByName(String tenSach){
@@ -129,6 +130,6 @@ public class SachController {
 
     public static void main(String[] args) {
         Sach sach = new Sach(5, 20000, 35000, 100, 2016, "Truyen vui", "Kim Đồng", "Văn A", "Truyện");
-        System.out.println(SachController.updateSach(sach));
+        System.out.println(SachController.deleteSachById(1));
     }
 }
