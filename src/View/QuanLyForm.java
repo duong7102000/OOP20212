@@ -473,7 +473,6 @@ public class QuanLyForm extends JDialog{
         table7.setModel(defaultTableModel7);
         defaultTableModel7.addColumn("Id hóa đơn");
         defaultTableModel7.addColumn("Id sản phẩm");
-        defaultTableModel7.addColumn("Tên sản phẩm");
         defaultTableModel7.addColumn("Giá bán");
         defaultTableModel7.addColumn("Số lượng mua");
         table6.addMouseListener(new MouseAdapter() {

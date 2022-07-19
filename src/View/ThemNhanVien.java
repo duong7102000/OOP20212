@@ -4,6 +4,7 @@ import Controller.AccountController;
 import Model.Account;
 import Model.NhanVienFullTime;
 import Model.NhanVienPartTime;
+import Model.QuanLy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ import java.util.List;
 import static Controller.AccountController.getAccountByUsername;
 import static Controller.NhanVienFullTimeController.insertNhanVienFullTime;
 import static Controller.NhanVienPartTimeController.insertNhanVienPartTime;
+import static Controller.QuanLyController.insertQuanLy;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
@@ -57,6 +59,13 @@ public class ThemNhanVien extends JDialog{
                             case "employee full time":
                                 NhanVienFullTime s=new NhanVienFullTime(textField1.getText(),textField2.getText(),textField3.getText(),textField4.getText(),parseInt(textField5.getText()),parseDouble(textField8.getText()));
                                 insertNhanVienFullTime(s);
+                                dispose();
+                                break;
+                        }
+                        switch (textField3.getText()) {
+                            case "admin":
+                                QuanLy s = new QuanLy(textField1.getText(), textField2.getText(), textField3.getText(), textField4.getText(), parseInt(textField5.getText()), parseDouble(textField8.getText()));
+                                insertQuanLy(s);
                                 dispose();
                                 break;
                         }

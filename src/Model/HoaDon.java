@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static Model.CuaHang.doanhThu;
@@ -26,7 +25,7 @@ public class HoaDon {
     }
     public double tinhLoiNhuanDonHang(){
         double loiNhuanDonHang=0;
-        for(int i = 0;i< gioHangList.size()-1;i++){
+        for(int i = 0;i< gioHangList.size();i++){
             double loiNhuanSP = (gioHangList.get(i).getSanPham().getGiaBan()-gioHangList.get(i).getSanPham().getGiaMua()) * gioHangList.get(i).getSoLuong();
             loiNhuanDonHang+=loiNhuanSP;
         }
