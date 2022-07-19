@@ -4,6 +4,7 @@ import Model.Account;
 import Model.NhanVienFullTime;
 import Model.QuanLy;
 import Util.ConnectionDB;
+import Util.NormalizeString;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -100,6 +101,17 @@ public class QuanLyController {
         }
         check = deleteAccountByUsername(username);
         return check;
+    }
+    public static List<QuanLy> searchQuanLyByName(String tenNhanVien){
+        List<QuanLy> listQuanLyResult = new ArrayList<>();
+        List<QuanLy> listQuanLy = QuanLyController.getAllQuanLy();
+        if (tenNhanVien == "") return listQuanLy;
+        for (QuanLy ql: listQuanLy) {
+            if (NormalizeString.normalizeSearchString(ql.getTenNhanVien()).contains(NormalizeString.normalizeSearchString(tenNhanVien))){
+                listQuanLyResult.add(ql);
+            }
+        }
+        return listQuanLyResult;
     }
     public static void main(String[] args) {
         List<QuanLy> listQuanLy = getAllQuanLy();

@@ -17,8 +17,7 @@ import static Controller.GioHangController.getListGioHangByHoaDonId;
 import static Controller.HoaDonController.getAllHoaDon;
 import static Controller.NhanVienFullTimeController.*;
 import static Controller.NhanVienPartTimeController.*;
-import static Controller.QuanLyController.deleteQuanLyByUsername;
-import static Controller.QuanLyController.getAllQuanLy;
+import static Controller.QuanLyController.*;
 import static Controller.SachController.*;
 import static java.lang.Integer.parseInt;
 
@@ -292,7 +291,8 @@ public class QuanLyForm extends JDialog{
                 String nhanVienSearch = textField1.getText();
                 List<NhanVienFullTime> listnvft = searchNvftByName(nhanVienSearch);
                 List<NhanVienPartTime> listnvpt = searchNvptByName(nhanVienSearch);
-                if ((listnvft.size() == 0) && (listnvpt.size() == 0)) {
+                List<QuanLy> listQuanLy = searchQuanLyByName(nhanVienSearch);
+                if ((listnvft.size() == 0) && (listnvpt.size() == 0)&& (listQuanLy.size()==0)) {
                     JOptionPane.showMessageDialog(QuanLyForm.this, "Không có nhân viên bạn tìm kiếm!");
                 } else {
                     int rows = defaultTableModel4.getRowCount();
@@ -307,6 +307,18 @@ public class QuanLyForm extends JDialog{
                         String password = nvft.getAccount().getPassword();
                         String position = nvft.getAccount().getPosition();
                         double luong = nvft.tinhLuong();
+                        Object[] row = new Object[]{ten, namSinh, username, password, position, luong};
+                        defaultTableModel4.addRow(row);
+                    }
+                    int rows2 = defaultTableModel4.getRowCount();
+                    for ( QuanLy ql :
+                            listQuanLy) {
+                        String ten = ql.getTenNhanVien();
+                        int namSinh = ql.getNamSinh();
+                        String username = ql.getAccount().getUsername();
+                        String password = ql.getAccount().getPassword();
+                        String position = ql.getAccount().getPosition();
+                        double luong = ql.tinhLuong();
                         Object[] row = new Object[]{ten, namSinh, username, password, position, luong};
                         defaultTableModel4.addRow(row);
                     }
