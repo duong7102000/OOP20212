@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -527,6 +528,11 @@ public class QuanLyForm extends JDialog{
                     doanhThu += doanhThuHoaDon;
                 }
                 if(thang ==null) continue;
+                else{
+                    Calendar c1 = Calendar.getInstance();
+                    c1.set(j,i,0,0,0,0);
+                    thang = c1.getTime();
+                }
                 Object[] row = new Object[]{thang, doanhThu};
                 defaultTableModel8.addRow(row);
             }
