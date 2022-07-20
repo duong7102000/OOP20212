@@ -539,8 +539,8 @@ public class QuanLyForm extends JDialog{
         }
         DefaultTableModel defaultTableModel9= new DefaultTableModel();
         loiNhuanThang.setModel(defaultTableModel9);
-        defaultTableModel8.addColumn("Tháng");
-        defaultTableModel8.addColumn("Lợi nhuận");
+        defaultTableModel9.addColumn("Tháng");
+        defaultTableModel9.addColumn("Lợi nhuận");
         for(int j= 2022;j<=2022;j++){
             for (int i=1;i<=12;i++) {
                 double loiNhuan = 0;
@@ -558,7 +558,7 @@ public class QuanLyForm extends JDialog{
                     thang = c1.getTime();
                 }
                 Object[] row = new Object[]{thang, loiNhuan};
-                defaultTableModel8.addRow(row);
+                defaultTableModel9.addRow(row);
             }
         }
         setVisible(true);
