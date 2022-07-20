@@ -3,7 +3,7 @@ package Util;
 import java.sql.*;
 
 public class ConnectionDB {
-    public static String URL = "jdbc:mysql://localhost:3306/dump20220710";
+    public static String URL = "jdbc:mysql://localhost:3306/dump20220720";
     public static String USER = "root";
     public static String PASSWORD = "12345678";
 

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
--- Host: localhost    Database: dump20220710
+-- Host: localhost    Database: dump20220720
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.29
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -62,7 +62,7 @@ CREATE TABLE `tbl_dianhac` (
 
 LOCK TABLES `tbl_dianhac` WRITE;
 /*!40000 ALTER TABLE `tbl_dianhac` DISABLE KEYS */;
-INSERT INTO `tbl_dianhac` VALUES (16,'Mang tiền về cho mẹ','Rap','Đen vâu','Rap'),(17,'Never stop me','Rap','tkay maidza','Rap');
+INSERT INTO `tbl_dianhac` VALUES (16,'Mang tiền về cho mẹ','Rap','Đen vâu','Rap'),(17,'Never stop me','Rap','tkay maidza','Rap'),(18,'Alive','Rock','Claris','Rock');
 /*!40000 ALTER TABLE `tbl_dianhac` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `tbl_giohang` (
 
 LOCK TABLES `tbl_giohang` WRITE;
 /*!40000 ALTER TABLE `tbl_giohang` DISABLE KEYS */;
-INSERT INTO `tbl_giohang` VALUES (0,1,1,5),(1,5,5,10),(2,5,5,10),(6,1,6,5),(7,5,7,3),(9,3,7,5),(10,5,8,2),(11,3,8,2),(12,5,9,5),(13,3,9,5),(14,1,9,5),(15,10,15,3),(16,10,14,3),(17,10,16,3),(18,10,3,3),(19,11,15,4),(20,11,14,4),(21,11,16,5),(22,11,3,3);
+INSERT INTO `tbl_giohang` VALUES (0,1,1,5),(1,5,5,10),(2,5,5,10),(6,1,6,5),(7,5,7,3),(9,3,7,5),(10,5,8,2),(11,3,8,2),(12,5,9,5),(13,3,9,5),(14,1,9,5),(15,10,15,3),(16,10,14,3),(17,10,16,3),(18,10,3,3),(19,11,15,4),(20,11,14,4),(21,11,16,5),(22,11,3,3),(23,14,15,3),(24,14,14,3),(25,14,17,3),(26,14,16,3),(27,14,3,3),(28,15,3,3),(29,15,16,3),(30,15,17,3),(31,15,14,3),(32,15,15,3),(33,16,15,3),(34,16,17,3);
 /*!40000 ALTER TABLE `tbl_giohang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `tbl_hoadon` (
 
 LOCK TABLES `tbl_hoadon` WRITE;
 /*!40000 ALTER TABLE `tbl_hoadon` DISABLE KEYS */;
-INSERT INTO `tbl_hoadon` VALUES (1,0,1025000,NULL),(2,0,350000,NULL),(3,0,350000,NULL),(4,0,350000,NULL),(5,0,350000,NULL),(6,0,600000,NULL),(7,0,325000,NULL),(8,0,70000,NULL),(9,0,350000,NULL),(10,0,465000,NULL),(11,50,317500,NULL),(12,50,0,'2022-07-20 00:00:00'),(13,50,342664,'2022-01-21 00:00:00');
+INSERT INTO `tbl_hoadon` VALUES (1,0,1025000,NULL),(2,0,350000,NULL),(3,0,350000,NULL),(4,0,350000,NULL),(5,0,350000,NULL),(6,0,600000,NULL),(7,0,325000,NULL),(8,0,70000,NULL),(9,0,350000,NULL),(10,0,465000,NULL),(11,50,317500,NULL),(12,50,0,'2022-07-20 00:00:00'),(13,50,342664,'2022-01-21 00:00:00'),(14,0,615000,'2022-07-20 00:00:00'),(15,50,307500,'2022-07-20 00:00:00'),(16,50,127500,'2022-07-20 00:00:00');
 /*!40000 ALTER TABLE `tbl_hoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,10 +242,10 @@ DROP TABLE IF EXISTS `tbl_sach`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_sach` (
   `id` int NOT NULL,
-  `ten` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nhaXuatBan` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tacGia` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `theLoai` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ten` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL,
+  `nhaXuatBan` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tacGia` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `theLoai` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_1_sach` FOREIGN KEY (`id`) REFERENCES `tbl_sanpham` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
@@ -284,7 +284,7 @@ CREATE TABLE `tbl_sanpham` (
 
 LOCK TABLES `tbl_sanpham` WRITE;
 /*!40000 ALTER TABLE `tbl_sanpham` DISABLE KEYS */;
-INSERT INTO `tbl_sanpham` VALUES (1,30000,35000,85,2016),(3,30000,35000,77,2016),(4,30000,35000,100,2016),(5,20000,35000,75,2016),(6,20000,35000,100,2016),(7,20000,35000,100,2016),(8,20000,35000,100,2016),(9,20000,35000,100,2016),(10,20000,35000,100,2020),(12,7000,15000,-20,1993),(13,30000,50000,-5,2000),(14,20000,35000,73,2016),(15,20000,35000,93,2016),(16,30000,50000,42,2022),(17,30000,50000,50,2022);
+INSERT INTO `tbl_sanpham` VALUES (1,30000,35000,85,2016),(3,30000,35000,71,2016),(4,30000,35000,100,2016),(5,20000,35000,75,2016),(6,20000,35000,100,2016),(7,20000,35000,100,2016),(8,20000,35000,100,2016),(9,20000,35000,100,2016),(10,20000,35000,100,2020),(12,7000,15000,-20,1993),(13,30000,50000,-5,2000),(14,20000,35000,67,2016),(15,20000,35000,84,2016),(16,30000,50000,36,2022),(17,30000,50000,41,2022),(18,30000,100000,50,2022);
 /*!40000 ALTER TABLE `tbl_sanpham` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-20 14:39:40
+-- Dump completed on 2022-07-20 18:28:36

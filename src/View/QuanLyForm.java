@@ -9,12 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import java.util.List;
 
 import static Controller.DiaNhacController.*;
 import static Controller.DiaPhimController.*;
 import static Controller.GioHangController.getListGioHangByHoaDonId;
 import static Controller.HoaDonController.getAllHoaDon;
+import static Controller.HoaDonController.getAllHoaDonTheoThang;
 import static Controller.NhanVienFullTimeController.*;
 import static Controller.NhanVienPartTimeController.*;
 import static Controller.QuanLyController.*;
@@ -471,14 +473,16 @@ public class QuanLyForm extends JDialog{
         DefaultTableModel defaultTableModel6 = new DefaultTableModel();
         table6.setModel(defaultTableModel6);
         defaultTableModel6.addColumn("Id hóa đơn");
+        defaultTableModel6.addColumn("Ngày bán");
         defaultTableModel6.addColumn("Discount");
         defaultTableModel6.addColumn("Giá trị đơn hàng");
         List<HoaDon> listHoaDon = getAllHoaDon();
         for(HoaDon hd:listHoaDon){
             int id = hd.getId();
             int discount = hd.getDiscount();
+            Date ngayBan = hd.getDate();
             double giaTriDonHang = hd.tinhGiaTriDonHang();
-            Object[] row = new Object[]{id,discount,giaTriDonHang};
+            Object[] row = new Object[]{id,ngayBan,discount,giaTriDonHang};
             defaultTableModel6.addRow(row);
         }
         DefaultTableModel defaultTableModel7 = new DefaultTableModel();
@@ -508,6 +512,25 @@ public class QuanLyForm extends JDialog{
                 }
             }
         });
+        DefaultTableModel defaultTableModel8= new DefaultTableModel();
+        doanhThuTheoThang.setModel(defaultTableModel8);
+        defaultTableModel8.addColumn("Tháng");
+        defaultTableModel8.addColumn("DoanhThu");
+        for(int j= 2022;j<=2022;j++){
+            for (int i=1;i<=12;i++) {
+                double doanhThu = 0;
+                List<HoaDon> hoaDonList = getAllHoaDonTheoThang(i, j);
+                Date thang = null;
+                for (HoaDon hd : hoaDonList) {
+                    thang = hd.getDate();
+                    double doanhThuHoaDon = hd.tinhGiaTriDonHang();
+                    doanhThu += doanhThuHoaDon;
+                }
+                if(thang ==null) continue;
+                Object[] row = new Object[]{thang, doanhThu};
+                defaultTableModel8.addRow(row);
+            }
+        }
         setVisible(true);
     }
     public static void main(String[] args) {
