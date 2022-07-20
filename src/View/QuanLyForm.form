@@ -89,22 +89,21 @@
                   <text value="Cập nhật doanh thu"/>
                 </properties>
               </component>
-              <component id="6a769" class="javax.swing.JLabel">
+              <scrollpane id="14fe2">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Lợi nhuận tháng"/>
+                  <font size="20"/>
                 </properties>
-              </component>
-              <component id="110fd" class="javax.swing.JLabel" binding="loiNhuanThang">
-                <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="VND"/>
-                </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="fe557" class="javax.swing.JTable" binding="loiNhuanThang">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <grid id="38604" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

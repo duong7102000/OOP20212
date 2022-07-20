@@ -48,7 +48,7 @@ public class QuanLyForm extends JDialog{
     private JTable doanhThuTheoThang;
     private JButton xóaNhânViênButton;
     private JButton cậpNhậtDoanhThuButton;
-    private JLabel loiNhuanThang;
+    private JTable loiNhuanThang;
 
     public QuanLyForm(JFrame parent){
         super(parent);
@@ -534,6 +534,30 @@ public class QuanLyForm extends JDialog{
                     thang = c1.getTime();
                 }
                 Object[] row = new Object[]{thang, doanhThu};
+                defaultTableModel8.addRow(row);
+            }
+        }
+        DefaultTableModel defaultTableModel9= new DefaultTableModel();
+        loiNhuanThang.setModel(defaultTableModel9);
+        defaultTableModel8.addColumn("Tháng");
+        defaultTableModel8.addColumn("Lợi nhuận");
+        for(int j= 2022;j<=2022;j++){
+            for (int i=1;i<=12;i++) {
+                double loiNhuan = 0;
+                List<HoaDon> hoaDonList = getAllHoaDonTheoThang(i, j);
+                Date thang = null;
+                for (HoaDon hd : hoaDonList) {
+                    thang = hd.getDate();
+                    double loiNhuanHoaDon = hd.tinhLoiNhuanDonHang();
+                    loiNhuan += loiNhuanHoaDon;
+                }
+                if(thang ==null) continue;
+                else{
+                    Calendar c1 = Calendar.getInstance();
+                    c1.set(j,i,0,0,0,0);
+                    thang = c1.getTime();
+                }
+                Object[] row = new Object[]{thang, loiNhuan};
                 defaultTableModel8.addRow(row);
             }
         }
