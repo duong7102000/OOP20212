@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Date;
 import java.util.List;
 
 import static Model.CuaHang.doanhThu;
@@ -8,6 +9,16 @@ import static Model.CuaHang.doanhThu;
 public class HoaDon {
     private int id;
     private int discount;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
     public List<GioHang> gioHangList;
     public void boSanPhamThuIKhoiGioHang(int i){
         gioHangList.remove(i);
