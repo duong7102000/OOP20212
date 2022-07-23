@@ -3,7 +3,7 @@ package Model;
 import java.sql.Date;
 import java.util.List;
 
-import static Model.CuaHang.doanhThu;
+
 
 
 public class HoaDon {
@@ -20,9 +20,6 @@ public class HoaDon {
 
     private Date date;
     public List<GioHang> gioHangList;
-    public void boSanPhamThuIKhoiGioHang(int i){
-        gioHangList.remove(i);
-    }
     public double tinhGiaTriDonHang(){
         double giaTriDonHang=0;
         if (gioHangList.size()==0){return 0;}
@@ -40,7 +37,6 @@ public class HoaDon {
             double loiNhuanSP = (gioHangList.get(i).getSanPham().getGiaBan()-gioHangList.get(i).getSanPham().getGiaMua()) * gioHangList.get(i).getSoLuong();
             loiNhuanDonHang+=loiNhuanSP;
         }
-        doanhThu+=loiNhuanDonHang;
         return loiNhuanDonHang;
     }
 

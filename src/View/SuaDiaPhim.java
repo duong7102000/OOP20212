@@ -38,7 +38,7 @@ public class SuaDiaPhim extends JDialog{
         suaDiaPhimButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DiaPhim s= new DiaPhim(parseInt(textField1.getText()),parseDouble(textField10.getText()),parseDouble(textField9.getText()),parseInt(textField8.getText()),parseInt(textField7.getText()),textField2.getText(),textField3.getText(),textField4.getText(),textField5.getText(),textField6.getText());
+                DiaPhim s= new DiaPhim(parseInt(textField10.getText()),parseDouble(textField9.getText()),parseDouble(textField8.getText()),parseInt(textField7.getText()),parseInt(textField6.getText()),textField1.getText(),textField2.getText(),textField3.getText(),textField4.getText(),textField5.getText());
                 updateDiaPhim(s);
                 dispose();
             }

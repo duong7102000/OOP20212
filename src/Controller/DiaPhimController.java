@@ -82,7 +82,7 @@ public class DiaPhimController {
         String hangSanXuat = diaPhim.getHangSanXuat();
         Connection connection = ConnectionDB.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_diaphim set ten = N\'%s\', daoDien = N\'%s\', bienKich = N\'%s\', dienVien = N\'%s\', hangSanSuat= N\'%s\' where id = %d", ten, daoDien, bienKich, dienVien, hangSanXuat));
+            CallableStatement callableStatement = connection.prepareCall(String.format("update tbl_diaphim set ten = N\'%s\', daoDien = N\'%s\', bienKich = N\'%s\', dienVien = N\'%s\', hangSanXuat= N\'%s\' where id = %d", ten, daoDien, bienKich, dienVien, hangSanXuat,id));
             check = !callableStatement.execute();
         } catch (SQLException e){
             e.printStackTrace();

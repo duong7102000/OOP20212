@@ -29,7 +29,7 @@ public class SuaNhanVien extends JDialog {
 
     public SuaNhanVien(JFrame parent) {
         super(parent);
-        setTitle("Sửa sản phẩm");
+        setTitle("Sửa nhân viên");
         setContentPane(SuaNhanVien);
         setMinimumSize(new Dimension(500, 600));
         setModal(true);

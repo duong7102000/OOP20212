@@ -25,6 +25,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="161b3" class="javax.swing.JTextField" binding="textField4" default-binding="true">
@@ -35,6 +36,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="59df4" class="javax.swing.JTextField" binding="textField6" default-binding="true">
@@ -92,6 +94,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="111b0" class="javax.swing.JLabel">
@@ -111,6 +114,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="d55a2" class="javax.swing.JLabel">
@@ -139,6 +143,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="9f84d" class="javax.swing.JLabel">
@@ -167,6 +172,7 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="9887a" class="javax.swing.JLabel">

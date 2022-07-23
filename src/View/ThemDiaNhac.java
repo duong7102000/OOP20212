@@ -38,7 +38,7 @@ public class ThemDiaNhac extends JDialog {
         thêmĐĩaNhạcButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DiaNhac s= new DiaNhac(parseInt(textField1.getText()),parseDouble(textField9.getText()),parseDouble(textField8.getText()),parseInt(textField7.getText()),parseInt(textField6.getText()),textField2.getText(),textField4.getText(),textField3.getText(),textField4.getText());
+                DiaNhac s= new DiaNhac(parseInt(textField1.getText()),parseDouble(textField9.getText()),parseDouble(textField8.getText()),parseInt(textField7.getText()),parseInt(textField6.getText()),textField2.getText(),textField3.getText(),textField4.getText(),textField5.getText());
                 insertDiaNhac(s);
                 dispose();
             }

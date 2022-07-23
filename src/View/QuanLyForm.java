@@ -502,7 +502,6 @@ public class QuanLyForm extends JDialog{
                 }
                 DefaultTableModel defaultTableModel6 = (DefaultTableModel) table6.getModel();
                 int id = parseInt(defaultTableModel6.getValueAt(table6.getSelectedRow(), 0).toString());
-                System.out.println(id);
                 List<GioHang> gioHangs = getListGioHangByHoaDonId(id);
                 for(GioHang gh : gioHangs){
                     int idSanPham = gh.getSanPham().getId();
@@ -517,8 +516,10 @@ public class QuanLyForm extends JDialog{
         doanhThuTheoThang.setModel(defaultTableModel8);
         defaultTableModel8.addColumn("Tháng");
         defaultTableModel8.addColumn("DoanhThu");
+        int count =23;
         for(int j= 2022;j<=2022;j++){
             for (int i=1;i<=12;i++) {
+                System.out.println(count--);
                 double doanhThu = 0;
                 List<HoaDon> hoaDonList = getAllHoaDonTheoThang(i, j);
                 Date thang = null;
@@ -528,11 +529,6 @@ public class QuanLyForm extends JDialog{
                     doanhThu += doanhThuHoaDon;
                 }
                 if(thang ==null) continue;
-                else{
-                    Calendar c1 = Calendar.getInstance();
-                    c1.set(j,i,0,0,0,0);
-                    thang = c1.getTime();
-                }
                 Object[] row = new Object[]{thang, doanhThu};
                 defaultTableModel8.addRow(row);
             }
@@ -543,6 +539,7 @@ public class QuanLyForm extends JDialog{
         defaultTableModel9.addColumn("Lợi nhuận");
         for(int j= 2022;j<=2022;j++){
             for (int i=1;i<=12;i++) {
+                System.out.println(count--);
                 double loiNhuan = 0;
                 List<HoaDon> hoaDonList = getAllHoaDonTheoThang(i, j);
                 Date thang = null;
@@ -552,11 +549,6 @@ public class QuanLyForm extends JDialog{
                     loiNhuan += loiNhuanHoaDon;
                 }
                 if(thang ==null) continue;
-                else{
-                    Calendar c1 = Calendar.getInstance();
-                    c1.set(j,i,0,0,0,0);
-                    thang = c1.getTime();
-                }
                 Object[] row = new Object[]{thang, loiNhuan};
                 defaultTableModel9.addRow(row);
             }
